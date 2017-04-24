@@ -9,6 +9,7 @@ import com.winit.generator.task.MapperTask;
 
 public class WinitGeneratorApplication {
     public static void main(String[] args) {
+        //程序入口
         Application application = new Application(WinitGeneratorApplication.class.getSimpleName());
         application.parseArgs(args);
         application.setApplicationName(WinitGeneratorApplication.class.getName());
