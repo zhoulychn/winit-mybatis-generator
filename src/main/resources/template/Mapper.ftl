@@ -25,7 +25,7 @@ ${insertIfProps}
   <!-- 批量新增 -->
   <insert id="insertBatch" parameterType="java.util.List">
     INSERT INTO ${tableName}
-    (${baseColumn})
+    (${insertBatchColumns})
     VALUES
     <foreach collection="list" item="item" index="index" separator=",">
        (${insertBatchProps})
@@ -70,14 +70,14 @@ ${updateBatchColProps}
   </update>
   
   <!-- 查询所有 -->
-  <select id="findList" resultMap="BaseResultMap">
+  <select id="findList" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName} 
   </select>
   
   <!-- 分页查询 -->
-  <select id="findPage" resultMap="BaseResultMap">
+  <select id="findPage" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName} 
@@ -88,6 +88,6 @@ ${updateBatchColProps}
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName} 
-    WHERE id = <#noparse>#{id, jdbcType=BIGINT}</#noparse>
+    WHERE id = <#noparse>#{id, jdbcType=BIGINT}</#noparse> AND IS_DELETE = 'N'
   </select>
 </mapper>
