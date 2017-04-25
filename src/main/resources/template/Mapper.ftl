@@ -54,7 +54,7 @@ ${updateBatchColProps}
   
   <!-- 删除 -->
   <update id="delete${entityName}" parameterType="${entityType}" >
-    update ${tableName} set UPDATED = NOW(),UPDATEDBY = <#noparse>#{updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
+    update ${tableName} set UPDATED = <#noparse>#{updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
     where ID = <#noparse>#{id,jdbcType=BIGINT}</#noparse>
   </update>
   
@@ -63,7 +63,7 @@ ${updateBatchColProps}
     <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
         update ${tableName}
         <set>  
-           set UPDATED = NOW(),UPDATEDBY = <#noparse>#{item.updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
+           set UPDATED = <#noparse>#{updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{item.updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
         </set>  
         where ID = <#noparse>#{item.id,jdbcType=BIGINT}</#noparse>
     </foreach> 
@@ -88,6 +88,9 @@ ${updateBatchColProps}
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName} 
-    WHERE id = <#noparse>#{id, jdbcType=BIGINT}</#noparse> AND IS_DELETE = 'N'
+    WHERE IS_DELETE = 'N'
+    <if test="id != null">
+      AND id = <#noparse>#{id, jdbcType=BIGINT}</#noparse>
+    </if>
   </select>
 </mapper>

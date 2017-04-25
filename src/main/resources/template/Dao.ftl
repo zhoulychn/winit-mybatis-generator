@@ -41,5 +41,5 @@ public interface ${className} extends MyBatisPageRepo<${entityClassName}, Serial
     
     List<${entityClassName}> findList(Searchable<${entityClassName}> searchable);
     
-    ${entityClassName} get${entityName}(Long id);
+    ${entityClassName} get${entityName}(${entityClassName} entity);
 }

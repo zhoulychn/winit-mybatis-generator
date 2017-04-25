@@ -2,7 +2,7 @@ package com.winit.generator.task;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -50,10 +50,10 @@ public class CombineInfoTask extends AbstractApplicationTask {
             TableInfo tableInfo = tableInfos.get(tableName);
             
             Set<String> imports = new HashSet<String>();
-            Map<String, String> propTypes = new HashMap<String, String>();
-            Map<String, String> propRemarks = new HashMap<String, String>();
-            Map<String, String> propJdbcTypes = new HashMap<String, String>();
-            Map<String, String> propName2ColumnNames = new HashMap<String, String>();
+            Map<String, String> propTypes = new LinkedHashMap<String, String>();
+            Map<String, String> propRemarks = new LinkedHashMap<String, String>();
+            Map<String, String> propJdbcTypes = new LinkedHashMap<String, String>();
+            Map<String, String> propName2ColumnNames = new LinkedHashMap<String, String>();
             
             entityInfo.setTableName(tableName);
             entityInfo.setEntityName(entityName);

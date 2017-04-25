@@ -7,6 +7,18 @@ import com.winit.generator.task.EntityTask;
 import com.winit.generator.task.InitTask;
 import com.winit.generator.task.MapperTask;
 
+/**
+ * 
+ * 程序入口
+ * 
+ * @version 
+ * <pre>
+ * Author	Version		Date		Changes
+ * qiyongkang 	1.0  		2017年4月25日 	Created
+ *
+ * </pre>
+ * @since 1.
+ */
 public class WinitGeneratorApplication {
     public static void main(String[] args) {
         //程序入口
