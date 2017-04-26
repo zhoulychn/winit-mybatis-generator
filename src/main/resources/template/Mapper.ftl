@@ -82,7 +82,7 @@ ${updateBatchColProps}
   </select>
   
   <!-- 单个查询 -->
-  <select id="get${entityName}" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="get${entityName}" parameterType="${entityType}" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName} 

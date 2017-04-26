@@ -10,54 +10,58 @@
   <category name="base" description="基础配置">
     <item name="database" value="mysql" description="数据库"/>
     <item name="schemaPattern" value="root" description="每个用户对应一个同名的schema"/>
-    <item name="tableNames" value="oms_wh_inbound_freeze_revenue, person" description="需要工具生成的表，逗号分隔"/>
-    <item name="entityNames" value="InboundFreeze, Person" description="实体名，逗号分隔， 与上面的表名一一对应"/>
-    <item name="entityDescs" value="入库费用, 用户" description="实体描述， 与上面的实体名一一对应"/>
+    <item name="tableNames" value="person" description="需要工具生成的表，逗号分隔"/>
+    <item name="entityNames" value="Person" description="实体名，逗号分隔， 与上面的表名一一对应"/>
+    <item name="entityDescs" value="用户" description="实体描述， 与上面的实体名一一对应"/>
     <item name="baseDir" value="C:\Users\qiyongkang\Desktop\code" description="文件存放的根目录"/>
   </category>
   
   <category name="entity" description="实体配置">
-    <item name="package" value="com.winit.pms.base.entity" description="包路径"/>
+    <item name="package" value="org.qyk.dms.person.entity" description="包路径"/>
     <item name="path" value="entity" description="实体存放的路径，相对于baseDir"/>
   </category>
   
   <category name="dao" description="dao配置">
-    <item name="package" value="com.winit.pms.base.dao" description="包路径"/>
+    <item name="package" value="org.qyk.dms.person.dao" description="包路径"/>
     <item name="path" value="dao" description="dao存放的路径，相对于baseDir"/>
   </category>
   
   <category name="mapperXml" description="mapper文件配置">
-    <item name="package" value="com.surfilter.smcs.sys.model" description="包路径"/>
     <item name="path" value="mapper" description="mapper.xml存放的路径，相对于baseDir"/>
   </category>
   
   <category name="vo" description="vo文件配置">
-    <item name="package" value="com.winit.pms.spi.v2.base.vo" description="包路径"/>
+    <item name="package" value="org.qyk.person.spi.vo" description="包路径"/>
     <item name="path" value="vo" description="vo存放的路径，相对于baseDir"/>
   </category>
   
   <category name="manager" description="manager配置">
-    <item name="package" value="com.winit.pms.base.manager" description="包路径"/>
+    <item name="package" value="org.qyk.dms.person.manager" description="包路径"/>
     <item name="path" value="manager" description="实体存放的路径，相对于baseDir"/>
   </category>
   
   <category name="managerImpl" description="managerImpl配置">
-    <item name="package" value="com.winit.pms.base.manager.impl" description="包路径"/>
+    <item name="package" value="org.qyk.dms.person.manager.impl" description="包路径"/>
     <item name="path" value="manager/impl" description="managerImpl存放的路径，相对于baseDir"/>
   </category>
   
   <category name="command" description="command配置">
-    <item name="package" value="com.winit.pms.spi.v2.base.command" description="包路径"/>
+    <item name="package" value="org.qyk.person.spi.command" description="包路径"/>
     <item name="path" value="command" description="command存放的路径，相对于baseDir"/>
   </category>
   
   <category name="service" description="service配置">
-    <item name="package" value="com.winit.pms.spi.v2.base" description="包路径"/>
+    <item name="package" value="org.qyk.person.spi" description="包路径"/>
     <item name="path" value="service" description="service存放的路径，相对于baseDir"/>
   </category>
   
   <category name="serviceImpl" description="serviceImpl配置">
-    <item name="package" value="com.winit.pms.base.service.impl" description="包路径"/>
+    <item name="package" value="org.qyk.dms.person.service.impl" description="包路径"/>
+    <item name="path" value="service/impl" description="实体存放的路径，相对于baseDir"/>
+  </category>
+  
+  <category name="serviceTest" description="service测试类配置">
+    <item name="package" value="org.qyk.dms.person.service.impl" description="包路径"/>
     <item name="path" value="service/impl" description="实体存放的路径，相对于baseDir"/>
   </category>
 </system>

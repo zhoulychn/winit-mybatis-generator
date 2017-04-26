@@ -12,6 +12,7 @@ import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.handler.impl.EntityHandler;
 import com.winit.generator.model.DaoInfo;
 import com.winit.generator.model.EntityInfo;
+import com.winit.generator.model.VoInfo;
 import com.winit.generator.util.PropertyUtil;
 
 public class EntityTask extends AbstractApplicationTask {
@@ -41,8 +42,10 @@ public class EntityTask extends AbstractApplicationTask {
         super.doAfter(context);
         
         List<DaoInfo> daoList = new ArrayList<DaoInfo>();
-        //组装Dao信息
+        List<VoInfo> voList = new ArrayList<VoInfo>();
+        //组装Dao信息、组装Vo信息
         DaoInfo daoInfo = null;
+        VoInfo voInfo = null;
         for (EntityInfo entityInfo : entityInfos) {
             daoInfo = new DaoInfo();
             daoInfo.setClassName(entityInfo.getEntityName() + Constants.DAO_SUFFIX);
@@ -50,9 +53,17 @@ public class EntityTask extends AbstractApplicationTask {
             daoInfo.setImportStr("import " + entityInfo.getEntityPackage() + "." + entityInfo.getClassName() + ";");
             daoInfo.setPackageStr(Configuration.getString("dao.package"));
             daoList.add(daoInfo);
+            
+            
+            voInfo = new VoInfo();
+            voInfo.setPackageStr(Configuration.getString("vo.package"));
+            voInfo.setClassName(entityInfo.getEntityName() + Constants.VO_SUFFIX);
+            voInfo.setEntityInfo(entityInfo);
+            voList.add(voInfo);
         }
         
         context.setAttribute("daoList", daoList);
+        context.setAttribute("voList", voList);
     }
     
     public static void main(String[] args) {
