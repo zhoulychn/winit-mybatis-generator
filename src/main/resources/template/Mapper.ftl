@@ -12,7 +12,7 @@ ${resultMap}
   </sql>
   
   <!-- 单个插入 -->
-  <insert id="insert${entityName}" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
     insert into ${tableName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
 ${insertIfColumns}
