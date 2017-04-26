@@ -12,7 +12,7 @@ ${resultMap}
   </sql>
   
   <!-- 单个插入 -->
-  <insert id="insert${entityName}" parameterType="${entityType}">
+  <insert id="insert${entityName}" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
     insert into ${tableName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
 ${insertIfColumns}
@@ -62,9 +62,7 @@ ${updateBatchColProps}
   <update id="deleteBatch" parameterType="java.util.List" >
     <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
         update ${tableName}
-        <set>  
-           set UPDATED = <#noparse>#{updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{item.updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
-        </set>  
+        set UPDATED = <#noparse>#{item.updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{item.updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
         where ID = <#noparse>#{item.id,jdbcType=BIGINT}</#noparse>
     </foreach> 
   </update>

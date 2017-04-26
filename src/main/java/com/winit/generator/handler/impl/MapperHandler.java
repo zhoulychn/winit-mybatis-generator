@@ -59,7 +59,7 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
                         IS_DELETE = #{item.isDelete,jdbcType=VARCHAR},
                       </if>
                      */
-                    updateBatchColProps.append("        <if test=\"").append(propName).append(" != null\">\r\n          ").append(columnName).append("=#{item.")
+                    updateBatchColProps.append("        <if test=\"item.").append(propName).append(" != null\">\r\n          ").append(columnName).append("=#{item.")
                     .append(propName).append(",jdbcType=").append(propJdbcTypes.get(propName)).append("},\r\n").append("        </if>\r\n");
                 }
                
