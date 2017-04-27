@@ -31,7 +31,7 @@ public class EntityTask extends AbstractApplicationTask {
         BaseHandler<EntityInfo> handler = null;
         for (EntityInfo entityInfo : entityInfos) {
             handler = new EntityHandler(ENTITY_FTL, entityInfo);
-            handler.execute();
+            handler.execute(context);
         }
         logger.info("生成实体类完成");
         return false;

@@ -14,6 +14,7 @@
     <item name="entityNames" value="Person" description="实体名，逗号分隔， 与上面的表名一一对应"/>
     <item name="entityDescs" value="用户" description="实体描述， 与上面的实体名一一对应"/>
     <item name="baseDir" value="C:\Users\qiyongkang\Desktop\code" description="文件存放的根目录"/>
+    <item name="baseColumns" value="ORGANIZATION_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_ACTIVE,IS_DELETE" description="基本的字段"/>
   </category>
   
   <category name="entity" description="实体配置">

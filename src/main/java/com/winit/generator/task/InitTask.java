@@ -34,6 +34,16 @@ public class InitTask extends AbstractApplicationTask {
         //属性类型与jdbc类型的映射，注意这里为了防止与上面冲突，属性类型前加了_
         PropertyUtil.loadProp("propType2JdbcType.properties");
         
+        //加载基本的7个字段到list
+        String baseColumnsStr = Configuration.getString("base.baseColumns");
+        String[] baseColumnsArr = baseColumnsStr.split(",");
+        List<String> baseColumnList = new ArrayList<String>();
+        for (String str : baseColumnsArr) {
+            baseColumnList.add(str.toUpperCase());
+        }
+        context.setAttribute("baseColumns", baseColumnList);
+        
+        
         //获取所有需要生成的表名
         List<String> tableList = StringUtil.splitStr2List(Configuration.getString("base.tableNames"), ",");
         logger.info("需要生成的表：{}", tableList);

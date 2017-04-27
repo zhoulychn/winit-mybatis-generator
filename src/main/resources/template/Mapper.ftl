@@ -12,7 +12,7 @@ ${resultMap}
   </sql>
   
   <!-- 单个插入 -->
-  <insert id="insert${entityName}" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSingle" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
     insert into ${tableName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
 ${insertIfColumns}
@@ -33,7 +33,7 @@ ${insertIfProps}
   </insert>
   
   <!-- 单个更新 -->
-  <update id="update${entityName}" parameterType="${entityType}">
+  <update id="updateSingle" parameterType="${entityType}">
     update ${tableName}
     <set>
 ${updateColProps}
@@ -53,7 +53,7 @@ ${updateBatchColProps}
   </update>
   
   <!-- 删除 -->
-  <update id="delete${entityName}" parameterType="${entityType}" >
+  <update id="deleteSingle" parameterType="${entityType}" >
     update ${tableName} set UPDATED = <#noparse>#{updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
     where ID = <#noparse>#{id,jdbcType=BIGINT}</#noparse>
   </update>
@@ -68,21 +68,24 @@ ${updateBatchColProps}
   </update>
   
   <!-- 查询所有 -->
-  <select id="findList" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
+  <select id="findList" resultMap="BaseResultMap" parameterType="${entityType}">
     SELECT
     <include refid="Base_Column_List" />
-    FROM ${tableName} 
+    FROM ${tableName}
+    WHERE IS_DELETE = 'N'
+${findListConditon}
   </select>
   
   <!-- 分页查询 -->
   <select id="findPage" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
     SELECT
     <include refid="Base_Column_List" />
-    FROM ${tableName} 
+    FROM ${tableName}
+    WHERE IS_DELETE = 'N'
   </select>
   
   <!-- 单个查询 -->
-  <select id="get${entityName}" parameterType="${entityType}" resultMap="BaseResultMap">
+  <select id="get" parameterType="${entityType}" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName} 

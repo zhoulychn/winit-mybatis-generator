@@ -1,6 +1,7 @@
 package com.winit.generator.handler.impl;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -18,6 +19,7 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
         
     }
     
+    @SuppressWarnings("unchecked")
     @Override
     public void combileParams(MapperInfo info) {
       //<result column="SU_ROUTE_CODE" jdbcType="VARCHAR" property="suRouteCode" />
@@ -34,6 +36,10 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
         StringBuilder insertBatchProps = new StringBuilder();
         StringBuilder updateColProps = new StringBuilder();
         StringBuilder updateBatchColProps = new StringBuilder();
+        StringBuilder findListConditon = new StringBuilder();
+        
+        List<String> baseColumns = (List<String>) this.context.getAttribute("baseColumns");
+        
         //resultMap
         Map<String, String> propJdbcTypes = info.getEntityInfo().getPropJdbcTypes();
         for (Entry<String, String> entry : info.getEntityInfo().getPropNameColumnNames().entrySet()) {
@@ -55,12 +61,24 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
                     .append(propName).append(",jdbcType=").append(propJdbcTypes.get(propName)).append("},\r\n").append("      </if>\r\n");
                 
                     /**
-                     * <if test="isDelete != null">
+                     * <if test="item.isDelete != null">
                         IS_DELETE = #{item.isDelete,jdbcType=VARCHAR},
                       </if>
                      */
                     updateBatchColProps.append("        <if test=\"item.").append(propName).append(" != null\">\r\n          ").append(columnName).append("=#{item.")
                     .append(propName).append(",jdbcType=").append(propJdbcTypes.get(propName)).append("},\r\n").append("        </if>\r\n");
+                    
+                    /**
+                     * <if test="isDelete != null">
+                        AND IS_DELETE = #{isDelete,jdbcType=VARCHAR}
+                      </if>
+                     */
+                    if (!baseColumns.contains(columnName)) {
+                        findListConditon.append("    <if test=\"").append(propName).append(" != null\">\r\n      AND ").append(columnName).append("=#{")
+                        .append(propName).append(",jdbcType=").append(propJdbcTypes.get(propName)).append("}\r\n").append("    </if>\r\n");
+                    }
+                    
+                    
                 }
                
             }
@@ -100,6 +118,7 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
         this.param.put("insertBatchProps", insertBatchProps.substring(0, insertBatchProps.length() - 1));
         this.param.put("updateColProps", updateColProps.toString());
         this.param.put("updateBatchColProps", updateBatchColProps.toString());
+        this.param.put("findListConditon", findListConditon.toString());
     }
 
 }

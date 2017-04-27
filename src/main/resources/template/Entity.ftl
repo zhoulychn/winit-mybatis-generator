@@ -1,5 +1,6 @@
 package ${packageStr};
 import java.io.Serializable;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 ${importStr}
 
 /**
@@ -19,4 +20,9 @@ public class ${className} implements Serializable {
     
 ${propertiesStr}
 ${methodStr}
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this);
+    }
 }

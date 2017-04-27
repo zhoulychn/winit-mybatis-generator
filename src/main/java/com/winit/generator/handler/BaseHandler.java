@@ -4,11 +4,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.winit.generator.framework.context.ApplicationContext;
 import com.winit.generator.util.DateUtil;
 import com.winit.generator.util.FileHelper;
 import com.winit.generator.util.FreeMarkerUtil;
 
 public abstract class BaseHandler<T> {
+    protected ApplicationContext context;
     protected String ftlName;
     protected String savePath;
     protected Map<String, String> param = new HashMap<String, String>();
@@ -48,7 +50,8 @@ public abstract class BaseHandler<T> {
     /**
      * 生成文件
      */
-    public void execute() {
+    public void execute(ApplicationContext context) {
+        this.context = context;
         String str = null;
         combileParams(info);
         beforeGenerate();
