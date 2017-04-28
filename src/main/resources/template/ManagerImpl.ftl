@@ -20,6 +20,7 @@ import com.winit.common.spi.SPIException;
 import com.winit.pms.spi.v2.common.PageVo;
 import com.winit.pms.utils.BeanUtils;
 import com.winit.pms.utils.SearchableUtil;
+import com.winit.common.query.Sort.Direction;
 
 /**
  * ${entityDesc}managerImpl实现类
@@ -149,7 +150,11 @@ public class ${className} implements ${managerClassName} {
 
         // TODO:添加条件 searchable.addSearchFilter("USERNAME", SearchOperator.like,
         // vo.getUsername());
-
+        
+        if (searchable.getSort() == null) {
+            searchable.addSort(Direction.DESC, "CREATED");
+        }
+        
         return searchable;
     }
 }
