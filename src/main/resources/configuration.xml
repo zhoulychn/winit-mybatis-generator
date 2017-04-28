@@ -10,7 +10,7 @@
   <category name="base" description="基础配置">
     <item name="database" value="mysql" description="数据库"/>
     <item name="schemaPattern" value="root" description="每个用户对应一个同名的schema"/>
-    <item name="baseColumns" value="ORGANIZATION_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_ACTIVE,IS_DELETE" description="基本的字段"/>
+    <item name="baseColumns" value="ORGANIZATION_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_DELETE" description="基本的字段"/>
     <item name="tableNames" value="person,oms_wh_inbound_freeze_revenue" description="需要工具生成的表，逗号分隔"/>
     <item name="entityNames" value="Person,FreezeRevenue" description="实体名，逗号分隔， 与上面的表名一一对应"/>
     <item name="entityDescs" value="用户,冻结费用" description="实体描述， 与上面的实体名一一对应"/>
