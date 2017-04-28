@@ -6,12 +6,10 @@
 ${resultMap}
   </resultMap>
   
-  <!-- 基本列 -->
   <sql id="Base_Column_List">
     ${baseColumn}
   </sql>
-  
-  <!-- 单个插入 -->
+
   <insert id="insertSelective" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
     insert into ${tableName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -22,8 +20,7 @@ ${insertIfProps}
     </trim>
   </insert>
   
-  <!-- 批量新增 -->
-  <insert id="insertBatch" parameterType="java.util.List">
+  <insert id="insertSelectiveBatch" parameterType="java.util.List">
     INSERT INTO ${tableName}
     (${insertBatchColumns})
     VALUES
@@ -32,8 +29,7 @@ ${insertIfProps}
     </foreach>
   </insert>
   
-  <!-- 单个更新 -->
-  <update id="update${entityName}" parameterType="${entityType}">
+  <update id="updateByPrimaryKey" parameterType="${entityType}">
     update ${tableName}
     <set>
 ${updateColProps}
@@ -41,8 +37,7 @@ ${updateColProps}
     where ID = <#noparse>#{id,jdbcType=BIGINT}</#noparse>
   </update>
   
-  <!-- 批量更新 -->
-  <update id="updateBatch" parameterType="java.util.List">
+  <update id="updateByPrimaryKeyBatch" parameterType="java.util.List">
     <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
         UPDATE ${tableName}
         <set>
@@ -52,43 +47,41 @@ ${updateBatchColProps}
     </foreach> 
   </update>
   
-  <!-- 删除 -->
-  <update id="delete${entityName}" parameterType="${entityType}" >
+  <update id="deleteByPrimaryKey" parameterType="${entityType}" >
     update ${tableName} set UPDATED = <#noparse>#{updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
     where ID = <#noparse>#{id,jdbcType=BIGINT}</#noparse>
   </update>
   
-  <!-- 批量删除 -->
-  <update id="deleteBatch" parameterType="java.util.List" >
+  <update id="deleteByPrimaryKeyBatch" parameterType="java.util.List" >
     <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
         update ${tableName}
         set UPDATED = <#noparse>#{item.updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{item.updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
         where ID = <#noparse>#{item.id,jdbcType=BIGINT}</#noparse>
     </foreach> 
   </update>
-  
-  <!-- 查询所有 -->
-  <select id="findList" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="${entityType}">
     SELECT
     <include refid="Base_Column_List" />
-    FROM ${tableName} 
-  </select>
-  
-  <!-- 分页查询 -->
-  <select id="findPage" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM ${tableName} 
-  </select>
-  
-  <!-- 单个查询 -->
-  <select id="get${entityName}" parameterType="${entityType}" resultMap="BaseResultMap">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM ${tableName} 
+    FROM ${tableName}
     WHERE IS_DELETE = 'N'
     <if test="id != null">
-      AND id = <#noparse>#{id, jdbcType=BIGINT}</#noparse>
+        AND id = <#noparse>#{id, jdbcType=BIGINT}</#noparse>
     </if>
   </select>
+
+  <select id="selectListByExample" resultMap="BaseResultMap" parameterType="${entityType}">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ${tableName}
+    where IS_DELETE = 'N'
+      ${selectExample}
+  </select>
+
+  <select id="selectPageByExample" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ${tableName}
+  </select>
+
 </mapper>

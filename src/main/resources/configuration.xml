@@ -2,18 +2,18 @@
 <system>
   <category name="jdbc" description="数据库相关配置">
     <item name="driverName" value="com.mysql.jdbc.Driver" description="驱动名称"/>
-    <item name="url" value="jdbc:mysql://127.0.0.1:3306/test?useUnicode=yes&amp;characterEncoding=UTF8&amp;allowMultiQueries=true" description="url"/>
+    <item name="url" value="jdbc:mysql://172.16.3.171:3306/pms2?useUnicode=yes&amp;characterEncoding=UTF8&amp;allowMultiQueries=true" description="url"/>
     <item name="username" value="root" description="用户名"/>
-    <item name="password" value="123456" description="密码"/>
+    <item name="password" value="winit2015" description="密码"/>
   </category>
   
   <category name="base" description="基础配置">
     <item name="database" value="mysql" description="数据库"/>
     <item name="schemaPattern" value="root" description="每个用户对应一个同名的schema"/>
-    <item name="tableNames" value="person" description="需要工具生成的表，逗号分隔"/>
-    <item name="entityNames" value="Person" description="实体名，逗号分隔， 与上面的表名一一对应"/>
-    <item name="entityDescs" value="用户" description="实体描述， 与上面的实体名一一对应"/>
-    <item name="baseDir" value="C:\Users\qiyongkang\Desktop\code" description="文件存放的根目录"/>
+    <item name="tableNames" value="pms_is_instance_process_event,pms_pr_price_list" description="需要工具生成的表，逗号分隔"/>
+    <item name="entityNames" value="InstanceProcessEvent, PriceList" description="实体名，逗号分隔， 与上面的表名一一对应"/>
+    <item name="entityDescs" value="实例流程事件, 价格列表" description="实体描述， 与上面的实体名一一对应"/>
+    <item name="baseDir" value="E:\1" description="文件存放的根目录"/>
   </category>
   
   <category name="entity" description="实体配置">
@@ -27,6 +27,7 @@
   </category>
   
   <category name="mapperXml" description="mapper文件配置">
+    <item name="package" value="mybatis" description="包路径"/>
     <item name="path" value="mapper" description="mapper.xml存放的路径，相对于baseDir"/>
   </category>
   

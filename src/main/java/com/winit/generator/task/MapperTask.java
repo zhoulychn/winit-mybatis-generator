@@ -21,7 +21,7 @@ public class MapperTask extends AbstractApplicationTask {
         BaseHandler<MapperInfo> handler = null;
         for (MapperInfo mapperInfo : list) {
             handler = new MapperHandler(MAPPER_FTL, mapperInfo);
-            handler.execute();
+            handler.execute(context);
         }
         
         logger.info("生成Mapper完成");

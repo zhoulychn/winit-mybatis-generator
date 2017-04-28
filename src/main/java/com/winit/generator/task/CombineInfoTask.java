@@ -2,6 +2,7 @@ package com.winit.generator.task;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -99,6 +100,21 @@ public class CombineInfoTask extends AbstractApplicationTask {
         
         context.setAttribute("entityInfos", entityInfos);
         return false;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args) {
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        List<Long> list = new ArrayList<Long>();
+        list.add(1L);
+        map1.put("list", list);
+        
+        
+        List<Long> list2 = (List<Long>) map1.get("list");
+        list2.add(2L);
+        
+        System.out.println("list:" + list);
+        System.out.println("list:" + map1.get("list"));
     }
     
 }

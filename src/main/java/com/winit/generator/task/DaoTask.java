@@ -26,7 +26,7 @@ public class DaoTask extends AbstractApplicationTask {
         BaseHandler<DaoInfo> handler = null;
         for (DaoInfo daoInfo : daoInfos) {
             handler = new DaoHandler(DAO_FTL, daoInfo);
-            handler.execute();
+            handler.execute(context);
         }
         
         logger.info("生成dao完成");

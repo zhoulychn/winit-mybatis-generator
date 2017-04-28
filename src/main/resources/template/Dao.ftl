@@ -25,21 +25,22 @@ ${importStr}
  */
 @MyBatisRepo
 public interface ${className} extends MyBatisPageRepo<${entityClassName}, Serializable> {
-    long insert${entityName}(${entityClassName} entity);
+
+    long insertSelective(${entityClassName} entity);
     
-    Long insertBatch(@Param("list")List<${entityClassName}> list);
+    Long insertSelectiveBatch(@Param("list")List<${entityClassName}> list);
     
-    long update${entityName}(${entityClassName} entity);
+    long updateByPrimaryKey(${entityClassName} entity);
     
-    long updateBatch(@Param("list")List<${entityClassName}> list);
+    long updateByPrimaryKeyBatch(@Param("list")List<${entityClassName}> list);
     
-    long delete${entityName}(${entityClassName} entity);
+    long deleteByPrimaryKey(${entityClassName} entity);
     
-    long deleteBatch(@Param("list")List<${entityClassName}> list);
-    
-    PageBase<${entityClassName}> findPage(Searchable<${entityClassName}> searchable);
-    
-    List<${entityClassName}> findList(Searchable<${entityClassName}> searchable);
-    
-    ${entityClassName} get${entityName}(${entityClassName} entity);
+    long deleteByPrimaryKeyBatch(@Param("list")List<${entityClassName}> list);
+
+    ${entityClassName} selectByPrimaryKey(${entityClassName} entity);
+
+    List<${entityClassName}> selectListByExample(Searchable searchable);
+
+    PageBase<${entityClassName}> selectPageByExample(Searchable searchable);
 }
