@@ -37,7 +37,7 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
         StringBuilder updateColProps = new StringBuilder();
         StringBuilder updateBatchColProps = new StringBuilder();
         StringBuilder findListConditon = new StringBuilder();
-        
+
         List<String> baseColumns = (List<String>) this.context.getAttribute("baseColumns");
         
         //resultMap
@@ -73,17 +73,17 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
                         AND IS_DELETE = #{isDelete,jdbcType=VARCHAR}
                       </if>
                      */
-                    if (!baseColumns.contains(columnName)) {
-                        findListConditon.append("    <if test=\"").append(propName).append(" != null\">\r\n      AND ").append(columnName).append("=#{")
-                        .append(propName).append(",jdbcType=").append(propJdbcTypes.get(propName)).append("}\r\n").append("    </if>\r\n");
-                    }
-                    
-                    
+
+
                 }
-               
+
+            }
+            if(!columnName.equals("IS_DELETE")){
+                findListConditon.append("    <if test=\"").append(propName).append(" != null\">\r\n      AND ").append(columnName).append("=#{")
+                        .append(propName).append(",jdbcType=").append(propJdbcTypes.get(propName)).append("}\r\n").append("    </if>\r\n");
             }
             baseColumn.append(columnName).append(",");
-            
+
             if (!("updated".equals(propName)) && !("updatedby".equals(propName))) {
                 /**
                  * <if test="id != null">
@@ -118,7 +118,7 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
         this.param.put("insertBatchProps", insertBatchProps.substring(0, insertBatchProps.length() - 1));
         this.param.put("updateColProps", updateColProps.toString());
         this.param.put("updateBatchColProps", updateBatchColProps.toString());
-        this.param.put("findListConditon", findListConditon.toString());
+        this.param.put("findListConditon", findListConditon.substring(0,findListConditon.length()-2));
     }
 
 }

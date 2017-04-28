@@ -10,8 +10,31 @@ ${resultMap}
     ${baseColumn}
   </sql>
 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="${entityType}">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ${tableName}
+    WHERE IS_DELETE = 'N'
+    AND id = <#noparse>#{id, jdbcType=BIGINT}</#noparse>
+  </select>
+
+  <select id="selectListByExample" resultMap="BaseResultMap" parameterType="${entityType}">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ${tableName}
+    where IS_DELETE = 'N'
+${findListConditon}
+  </select>
+
+  <select id="selectPageByExample" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM ${tableName}
+    WHERE IS_DELETE = 'N'
+  </select>
+
   <insert id="insertSelective" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
-    insert into ${tableName}
+    INSERT INTO ${tableName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
 ${insertIfColumns}
     </trim>
@@ -59,29 +82,4 @@ ${updateBatchColProps}
         where ID = <#noparse>#{item.id,jdbcType=BIGINT}</#noparse>
     </foreach> 
   </update>
-
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="${entityType}">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM ${tableName}
-    WHERE IS_DELETE = 'N'
-    <if test="id != null">
-        AND id = <#noparse>#{id, jdbcType=BIGINT}</#noparse>
-    </if>
-  </select>
-
-  <select id="selectListByExample" resultMap="BaseResultMap" parameterType="${entityType}">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM ${tableName}
-    where IS_DELETE = 'N'
-      ${selectExample}
-  </select>
-
-  <select id="selectPageByExample" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
-    SELECT
-    <include refid="Base_Column_List" />
-    FROM ${tableName}
-  </select>
-
 </mapper>

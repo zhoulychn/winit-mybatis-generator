@@ -12,19 +12,19 @@ import com.winit.common.query.Searchable;
 ${importStr}
 
 /**
- * 
- * ${entityDesc}Dao
- * 
- * @version 
- * <pre>
- * Author	Version		Date		Changes
- * ${author} 	1.0  		${time} 	Created
- *
- * </pre>
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* 工具类：根据属性文件替换页面上的中文为国际化key
+* ${entityDesc}Dao
+*/
+
 @MyBatisRepo
 public interface ${className} extends MyBatisPageRepo<${entityClassName}, Serializable> {
+
+    ${entityClassName} selectByPrimaryKey(${entityClassName} entity);
+
+    List<${entityClassName}> selectListByExample(${entityClassName} entity);
+
+    PageBase<${entityClassName}> selectPageByExample(Searchable searchable);
 
     long insertSelective(${entityClassName} entity);
     
@@ -37,10 +37,4 @@ public interface ${className} extends MyBatisPageRepo<${entityClassName}, Serial
     long deleteByPrimaryKey(${entityClassName} entity);
     
     long deleteByPrimaryKeyBatch(@Param("list")List<${entityClassName}> list);
-
-    ${entityClassName} selectByPrimaryKey(${entityClassName} entity);
-
-    List<${entityClassName}> selectListByExample(Searchable searchable);
-
-    PageBase<${entityClassName}> selectPageByExample(Searchable searchable);
 }

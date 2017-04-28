@@ -4,18 +4,13 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 ${importStr}
 
 /**
- * 
- * ${entityDesc}实体
- * 
- * @version 
- * <pre>
- * Author	Version		Date		Changes
- * ${author} 	1.0  ${time} Created
- *
- * </pre>
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* 工具类：根据属性文件替换页面上的中文为国际化key
+* ${entityDesc}实体
+*/
+
 public class ${className} implements Serializable {
+
     private static final long serialVersionUID = 1L;
     
 ${propertiesStr}
