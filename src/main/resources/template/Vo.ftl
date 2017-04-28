@@ -4,17 +4,10 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 ${importStr}
 
 /**
- * 
- * ${entityDesc}vo
- * 
- * @version 
- * <pre>
- * Author	Version		Date		Changes
- * ${author} 	1.0  ${time} Created
- *
- * </pre>
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* ${entityDesc}
+*/
+
 public class ${className} implements Serializable {
     private static final long serialVersionUID = ${serialVersionNum};
     

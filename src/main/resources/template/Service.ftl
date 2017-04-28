@@ -13,17 +13,10 @@ import com.winit.common.query.Page;
 import com.winit.common.spi.SPIException;
 
 /**
- * 
- * ${entityDesc}服务service
- * 
- * @version 
- * <pre>
- * Author	Version		Date		Changes
- * ${author}    1.0  ${time} Created
- *
- * </pre>
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* ${entityDesc}服务service
+*/
+
 public interface ${className} {
 
     /**

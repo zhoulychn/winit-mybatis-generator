@@ -23,17 +23,10 @@ import com.winit.common.spi.context.CommandContext;
 import com.winit.pms.spi.v2.common.PageVo;
 
 /**
- * ${entityDesc}接口测试类
- * 
- * @version
- * 
- * <pre>
- * Author	Version		Date		Changes
- * ${author}    1.0  ${time} Created
- * </pre>
- * 
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* ${entityDesc}接口测试类
+*/
+
 @DirtiesContext
 @ActiveProfiles("test")
 @ContextConfiguration(locations = { "/applicationContext.xml" })

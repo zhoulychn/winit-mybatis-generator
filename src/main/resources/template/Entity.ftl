@@ -5,7 +5,6 @@ ${importStr}
 
 /**
 * Created by ${author} on ${time}.
-* 工具类：根据属性文件替换页面上的中文为国际化key
 * ${entityDesc}实体
 */
 

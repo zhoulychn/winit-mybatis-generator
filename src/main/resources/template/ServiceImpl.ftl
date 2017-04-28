@@ -23,17 +23,10 @@ import com.winit.common.spi.SPIException;
 import com.winit.pms.spi.v2.common.PageVo;
 
 /**
- * 
- * ${entityDesc}service服务类
- * 
- * @version 
- * <pre>
- * Author	Version		Date		Changes
- * ${author}    1.0  ${time} Created
- *
- * </pre>
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* ${entityDesc}service服务类
+*/
+
 @Service("${lowerEntityName}Service")
 public class ${entityName}ServiceImpl implements ${entityName}Service {
 

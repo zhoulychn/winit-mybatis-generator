@@ -8,17 +8,10 @@ import com.winit.common.spi.SPIException;
 import com.winit.pms.spi.v2.common.PageVo;
 
 /**
- * 
- * ${entityDesc}manager
- * 
- * @version 
- * <pre>
- * Author	Version		Date		Changes
- * ${author}    1.0  ${time} Created
- *
- * </pre>
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* ${entityDesc}管理
+*/
+
 public interface ${className} {
     Long add(${voClassName} vo) throws SPIException;
     

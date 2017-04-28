@@ -8,17 +8,10 @@ import com.winit.common.spi.command.SPICommand;
 import com.winit.pms.spi.v2.common.PageVo;
 
 /**
- * 
- * 查询所有、分页查询command
- * 
- * @version 
- * <pre>
- * Author	Version		Date		Changes
- * ${author}    1.0         ${time}     Created
- *
- * </pre>
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* 查询集合|分页command
+*/
+
 public class ${entityName}QueryCommand extends SPICommand implements Serializable {
 
     private static final long serialVersionUID = ${serialVersionNum};

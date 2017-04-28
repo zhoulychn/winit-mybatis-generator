@@ -112,8 +112,8 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
         }
         this.param.put("resultMap", resultMap.toString());
         this.param.put("baseColumn", baseColumn.substring(0, baseColumn.length() - 1));
-        this.param.put("insertIfColumns", insertIfColumns.toString());
-        this.param.put("insertIfProps", insertIfProps.toString());
+        this.param.put("insertIfColumns", insertIfColumns.substring(0,insertIfColumns.length()-2));
+        this.param.put("insertIfProps", insertIfProps.substring(0,insertIfProps.length()-2));
         this.param.put("insertBatchColumns", insertBatchColumns.substring(0, insertBatchColumns.length() - 1));
         this.param.put("insertBatchProps", insertBatchProps.substring(0, insertBatchProps.length() - 1));
         this.param.put("updateColProps", updateColProps.toString());

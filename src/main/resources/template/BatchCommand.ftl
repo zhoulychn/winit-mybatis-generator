@@ -8,17 +8,10 @@ import ${voType};
 import com.winit.common.spi.command.SPICommand;
 
 /**
- * 批量新增command
- * 
- * @version
- * 
- * <pre>
- * Author	Version		Date		Changes
- * ${author}    1.0         ${time}     Created
- * </pre>
- * 
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* 批量新增command
+*/
+
 public class ${entityName}BatchCommand extends SPICommand implements Serializable {
 
     private static final long serialVersionUID = ${serialVersionNum};

@@ -22,17 +22,10 @@ import com.winit.pms.utils.BeanUtils;
 import com.winit.pms.utils.SearchableUtil;
 
 /**
- * ${entityDesc}managerImpl实现类
- * 
- * @version
- * 
- * <pre>
- * Author	Version		Date		Changes
- * ${author}    1.0  ${time} Created
- * </pre>
- * 
- * @since 1.
- */
+* Created by ${author} on ${time}.
+* ${entityDesc}管理
+*/
+
 @Component("${annotationName}")
 public class ${className} implements ${managerClassName} {
 
