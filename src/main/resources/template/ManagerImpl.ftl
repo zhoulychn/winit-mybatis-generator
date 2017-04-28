@@ -52,6 +52,8 @@ public class ${className} implements ${managerClassName} {
         ${voClassName} newVo = new ${voClassName}();
         if (newEntity != null) {
             BeanUtils.copyProperties(newEntity, newVo);
+        } else {
+            return null;
         }
         return newVo;
     }
@@ -125,12 +127,8 @@ public class ${className} implements ${managerClassName} {
         logger.info("分页查询：{}, vo:{}", pageVo, vo);
         Searchable<${entityClassName}> searchable = this.buildSearchable(pageVo, vo);
         PageBase<${entityClassName}> page = ${daoVar}.findPage(searchable);
-        if (page != null && page.getTotalElements() > 0) {
-            Page<${voClassName}> pages = BeanUtils.copyPageList(page, ${voClassName}.class);
-            return pages;
-        } else {
-            return null;
-        }
+        Page<${voClassName}> pages = BeanUtils.copyPageList(page, ${voClassName}.class);
+        return pages;
     }
 
     @Override

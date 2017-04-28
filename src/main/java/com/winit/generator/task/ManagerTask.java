@@ -57,7 +57,7 @@ public class ManagerTask extends AbstractApplicationTask {
         for (int i = 0; i < managerInfos.size(); i++) {
             EntityInfo entityInfo = entityInfos.get(i);
             DaoInfo daoInfo = daoInfos.get(i);
-            VoInfo voInfo = voList.get(0);
+            VoInfo voInfo = voList.get(i);
             ManagerInfo managerInfo = managerInfos.get(i);
             
             managerImplInfo = new ManagerImplInfo();

@@ -9,6 +9,7 @@ import com.winit.generator.framework.AbstractApplicationTask;
 import com.winit.generator.framework.context.ApplicationContext;
 import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.handler.impl.VoHandler;
+import com.winit.generator.model.CommandInfo;
 import com.winit.generator.model.EntityInfo;
 import com.winit.generator.model.ManagerInfo;
 import com.winit.generator.model.VoInfo;
@@ -36,12 +37,14 @@ public class VoTask extends AbstractApplicationTask {
     protected void doAfter(ApplicationContext context) throws Exception {
         super.doAfter(context);
         
-        //组装ManagerInfo
+        //组装ManagerInfo、CommandInfo
         List<ManagerInfo> managerInfos = new ArrayList<ManagerInfo>();
-        
+        List<CommandInfo> commandInfos = new ArrayList<CommandInfo>();
         ManagerInfo managerInfo = null;
+        CommandInfo commandInfo = null;
         for (VoInfo voInfo : voList) {
             managerInfo = new ManagerInfo();
+            commandInfo = new CommandInfo();
             
             EntityInfo entityInfo = voInfo.getEntityInfo();
             
@@ -52,9 +55,23 @@ public class VoTask extends AbstractApplicationTask {
             managerInfo.setVoType(voInfo.getPackageStr() + "." + voInfo.getClassName());
             managerInfo.setVoInfo(voInfo);
             
+            
+            commandInfo.setEntityName(entityInfo.getEntityName());
+            commandInfo.setPackageStr(Configuration.getString("command.package"));
+            commandInfo.setVoClassName(voInfo.getClassName());
+            commandInfo.setVoType(voInfo.getPackageStr() + "." + voInfo.getClassName());
+            commandInfo.setClassName(entityInfo.getEntityName() + Constants.COMMAND_SUFFIX);
+            commandInfo.setGetClassName("Get" + entityInfo.getEntityName() + Constants.COMMAND_SUFFIX);
+            commandInfo.setQueryClassName(entityInfo.getEntityName() + "Query" + Constants.COMMAND_SUFFIX);
+            commandInfo.setBatchClassName(entityInfo.getEntityName() + "Batch" + Constants.COMMAND_SUFFIX);
+            commandInfo.setListClassName("List" + entityInfo.getEntityName() + Constants.COMMAND_SUFFIX);
+            
             managerInfos.add(managerInfo);
+            commandInfos.add(commandInfo);
         }
         context.setAttribute("managerInfos", managerInfos);
+        context.setAttribute("commandInfos", commandInfos);
+        
     }
 
 }

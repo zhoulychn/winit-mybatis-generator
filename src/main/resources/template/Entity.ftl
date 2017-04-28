@@ -16,7 +16,7 @@ ${importStr}
  * @since 1.
  */
 public class ${className} implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = ${serialVersionNum};
     
 ${propertiesStr}
 ${methodStr}
