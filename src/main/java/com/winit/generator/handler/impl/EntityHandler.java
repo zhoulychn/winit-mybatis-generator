@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import com.winit.generator.config.Configuration;
 import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.model.EntityInfo;
+import com.winit.generator.util.StringUtil;
 
 public class EntityHandler extends BaseHandler<EntityInfo> {
     
@@ -57,7 +58,6 @@ public class EntityHandler extends BaseHandler<EntityInfo> {
         
         this.param.put("propertiesStr", sb.toString());
         this.param.put("methodStr", sbMethods.toString());
-        
-        
+        this.param.put("serialVersionNum", StringUtil.generate16LongNum());
     }
 }
