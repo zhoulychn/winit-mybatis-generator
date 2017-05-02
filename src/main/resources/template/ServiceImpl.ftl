@@ -17,6 +17,7 @@ import ${voType};
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import com.winit.pms.spi.v2.common.PmsConstants;
 
 import com.winit.common.query.Page;
 import com.winit.common.spi.SPIException;
@@ -59,6 +60,8 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
         vo.setCreated(new Date());
         vo.setCreatedby(command.getCtx().getUsername());
         vo.setOrganizationId(command.getCtx().getOrgId());
+        vo.setIsActive(PmsConstants.ACTIVE_Y);
+        vo.setIsDelete(PmsConstants.DELETE_N);
         return ${lowerEntityName}Manager.add(vo);
 
     }
@@ -71,6 +74,8 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
             vo.setCreated(new Date());
             vo.setCreatedby(command.getCtx().getUsername());
             vo.setOrganizationId(command.getCtx().getOrgId());
+            vo.setIsActive(PmsConstants.ACTIVE_Y);
+            vo.setIsDelete(PmsConstants.DELETE_N);
         }
         long count = ${lowerEntityName}Manager.addBatch(vos);
         if (count > 0) {
