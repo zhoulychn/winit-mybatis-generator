@@ -55,7 +55,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("单个查询异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         ${voClassName} newVo = null;
         if (entity != null) {
@@ -80,7 +80,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("新增异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         return entity.getId();
     }
@@ -98,7 +98,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("批量新增异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         return count;
     }
@@ -116,7 +116,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("删除异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         return count;
     }
@@ -134,7 +134,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("批量删除异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         return count;
     }
@@ -152,7 +152,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("更新异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         return count;
     }
@@ -170,7 +170,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("批量更新异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         return count;
     }
@@ -185,7 +185,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("分页查询异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         Page<${voClassName}> pages = BeanUtils.copyPageList(page, ${voClassName}.class);
         return pages;
@@ -204,7 +204,7 @@ public class ${className} implements ${managerClassName} {
         } catch (RuntimeException e) {
             logger.error("查询所有异常", e);
             e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000, e);
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
         }
         List<${voClassName}> listVo = BeanUtils.copyList(list, ${voClassName}.class);
         return listVo;
