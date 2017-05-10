@@ -84,7 +84,7 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
             }
             baseColumn.append(columnName).append(",");
             
-            if (!("updated".equals(propName)) && !("updatedby".equals(propName))) {
+            if (!("updated".equals(propName)) && !("updatedby".equals(propName)) && !("id".equals(propName))) {
                 /**
                  * <if test="id != null">
                      ID,
