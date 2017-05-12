@@ -62,7 +62,7 @@
   </category>
   
   <category name="serviceTest" description="service测试类配置">
-    <item name="package" value="org.qyk.dms.person.service.impl" description="包路径"/>
-    <item name="path" value="service/impl" description="实体存放的路径，相对于baseDir"/>
+    <item name="package" value="org.qyk.dms.person.service" description="包路径"/>
+    <item name="path" value="service" description="实体存放的路径，相对于baseDir"/>
   </category>
 </system>
