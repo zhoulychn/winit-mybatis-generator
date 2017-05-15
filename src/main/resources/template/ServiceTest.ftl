@@ -51,7 +51,8 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         CommandContext context = new CommandContext();
         context.setUsername("system");
         context.setOrgId(10000L);
-        context.setLanguage("zh_CN");
+        context.setLanguage("en_US");
+        CommandContext.setContext(context);
         return context;
     }
 
