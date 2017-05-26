@@ -34,15 +34,26 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
 
     @Resource
     private ${entityName}Service ${lowerEntityName}Service;
+    
+    /**
+     * 虚拟上下文
+     * 
+     * @return
+     */
+    private CommandContext createContext() {
+        CommandContext context = new CommandContext();
+        context.setUsername("system");
+        context.setOrgId(10000L);
+        context.setLanguage("en_US");
+        CommandContext.setContext(context);
+        return context;
+    }
 
     @Test
     @Rollback(false)
     public void testAdd() {
         ${entityName}Command command = new ${entityName}Command();
-        CommandContext context = new CommandContext();
-        context.setUsername("system");
-        context.setOrgId(10000L);
-        command.setCtx(context);
+        command.setCtx(this.createContext());
         ${entityName}Vo vo = new ${entityName}Vo();
         command.setVo(vo);
         Long id = ${lowerEntityName}Service.add(command);
@@ -53,10 +64,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
     @Rollback(false)
     public void testAddBatch() {
         ${entityName}BatchCommand command = new ${entityName}BatchCommand();
-        CommandContext context = new CommandContext();
-        context.setUsername("system");
-        context.setOrgId(10000L);
-        command.setCtx(context);
+        command.setCtx(this.createContext());
         ${entityName}Vo v1 = new ${entityName}Vo();
         ${entityName}Vo v2 = new ${entityName}Vo();
         List<${entityName}Vo> list = new ArrayList<${entityName}Vo>();
@@ -72,9 +80,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
     @Rollback(false)
     public void testDelete() {
         Get${entityName}Command command = new Get${entityName}Command();
-        CommandContext context = new CommandContext();
-        context.setUsername("system");
-        command.setCtx(context);
+        command.setCtx(this.createContext());
         command.setId(101L);
         boolean isSuccess = ${lowerEntityName}Service.delete(command);
         System.out.println("是否成功：" + isSuccess);
@@ -84,9 +90,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
     @Rollback(false)
     public void testDeleteBatch() {
         List${entityName}Command command = new List${entityName}Command();
-        CommandContext context = new CommandContext();
-        context.setUsername("system");
-        command.setCtx(context);
+        command.setCtx(this.createContext());
 
         List<Long> ids = new ArrayList<Long>();
         ids.add(1L);
@@ -100,9 +104,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
     @Rollback(false)
     public void testUpdate() {
         ${entityName}Command command = new ${entityName}Command();
-        CommandContext context = new CommandContext();
-        context.setUsername("system");
-        command.setCtx(context);
+        command.setCtx(this.createContext());
         ${entityName}Vo vo = new ${entityName}Vo();
         vo.setId(1L);
         command.setVo(vo);
@@ -114,9 +116,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
     @Rollback(false)
     public void testUpdateBatch() {
         ${entityName}BatchCommand command = new ${entityName}BatchCommand();
-        CommandContext context = new CommandContext();
-        context.setUsername("system");
-        command.setCtx(context);
+        command.setCtx(this.createContext());
         ${entityName}Vo v1 = new ${entityName}Vo();
         v1.setId(1L);
         ${entityName}Vo v2 = new ${entityName}Vo();
@@ -133,6 +133,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testGet() {
         Get${entityName}Command command = new Get${entityName}Command();
+        command.setCtx(this.createContext());
         command.setId(1L);
         ${entityName}Vo vo = ${lowerEntityName}Service.get(command);
         System.out.println("vo：" + vo);
@@ -141,6 +142,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testQueryPage() {
         ${entityName}QueryCommand command = new ${entityName}QueryCommand();
+        command.setCtx(this.createContext());
         PageVo pageVo = new PageVo();
         pageVo.setFieldName("id");
         pageVo.setPageNo(1);
@@ -161,6 +163,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testQueryList() {
         ${entityName}QueryCommand command = new ${entityName}QueryCommand();
+        command.setCtx(this.createContext());
         ${entityName}Vo vo = new ${entityName}Vo();
         command.setVo(vo);
 

@@ -18,6 +18,7 @@ import com.winit.common.query.Page;
 import com.winit.common.query.Searchable;
 import com.winit.common.spi.SPIException;
 import com.winit.pms.spi.v2.common.PageVo;
+import com.winit.pms.spi.v2.common.PmsExceptionCode;
 import com.winit.pms.utils.BeanUtils;
 import com.winit.pms.utils.SearchableUtil;
 import com.winit.common.query.Sort.Direction;
@@ -42,12 +43,17 @@ public class ${className} implements ${managerClassName} {
         if (vo != null) {
             BeanUtils.copyProperties(vo, entity);
         }
-        ${entityClassName} newEntity = ${daoVar}.get(entity);
-        ${voClassName} newVo = new ${voClassName}();
-        if (newEntity != null) {
-            BeanUtils.copyProperties(newEntity, newVo);
-        } else {
-            return null;
+        try {
+            entity = ${daoVar}.get(entity);
+        } catch (RuntimeException e) {
+            logger.error("单个查询异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
+        ${voClassName} newVo = null;
+        if (entity != null) {
+            newVo = new ${voClassName}();
+            BeanUtils.copyProperties(entity, newVo);
         }
         return newVo;
     }
@@ -61,8 +67,14 @@ public class ${className} implements ${managerClassName} {
         }
 
         // TODO: 是否需要校验已存在
-
-        ${daoVar}.insertSingle(entity);
+        
+        try {
+            ${daoVar}.insertSingle(entity);
+        } catch (RuntimeException e) {
+            logger.error("新增异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
         return entity.getId();
     }
 
@@ -73,7 +85,15 @@ public class ${className} implements ${managerClassName} {
         if (vos != null) {
             list = BeanUtils.copyList(vos, ${entityClassName}.class);
         }
-        return ${daoVar}.insertBatch(list);
+        long count = 0L;
+        try {
+            count = ${daoVar}.insertBatch(list);
+        } catch (RuntimeException e) {
+            logger.error("批量新增异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
+        return count;
     }
 
     @Override
@@ -83,7 +103,15 @@ public class ${className} implements ${managerClassName} {
         if (vo != null) {
             BeanUtils.copyProperties(vo, entity);
         }
-        return ${daoVar}.deleteSingle(entity);
+        long count = 0L;
+        try {
+            count = ${daoVar}.deleteSingle(entity);
+        } catch (RuntimeException e) {
+            logger.error("删除异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
+        return count;
     }
 
     @Override
@@ -93,7 +121,15 @@ public class ${className} implements ${managerClassName} {
         if (vos != null) {
             list = BeanUtils.copyList(vos, ${entityClassName}.class);
         }
-        return ${daoVar}.deleteBatch(list);
+        long count = 0L;
+        try {
+            count = ${daoVar}.deleteBatch(list);
+        } catch (RuntimeException e) {
+            logger.error("批量删除异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
+        return count;
     }
 
     @Override
@@ -103,7 +139,15 @@ public class ${className} implements ${managerClassName} {
         if (vo != null) {
             BeanUtils.copyProperties(vo, entity);
         }
-        return ${daoVar}.updateSingle(entity);
+        long count = 0L;
+        try {
+            count = ${daoVar}.updateSingle(entity);
+        } catch (RuntimeException e) {
+            logger.error("更新异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
+        return count;
     }
 
     @Override
@@ -113,14 +157,29 @@ public class ${className} implements ${managerClassName} {
         if (vos != null) {
             list = BeanUtils.copyList(vos, ${entityClassName}.class);
         }
-        return ${daoVar}.updateBatch(list);
+        long count = 0L;
+        try {
+            count = ${daoVar}.updateBatch(list);
+        } catch (RuntimeException e) {
+            logger.error("批量更新异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
+        return count;
     }
 
     @Override
     public Page<${voClassName}> find(PageVo pageVo, ${voClassName} vo) throws SPIException {
         logger.info("分页查询：{}, vo:{}", pageVo, vo);
         Searchable<${entityClassName}> searchable = this.buildSearchable(pageVo, vo);
-        PageBase<${entityClassName}> page = ${daoVar}.findPage(searchable);
+        PageBase<${entityClassName}> page = null;
+        try {
+            page = ${daoVar}.findPage(searchable);
+        } catch (RuntimeException e) {
+            logger.error("分页查询异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
         Page<${voClassName}> pages = BeanUtils.copyPageList(page, ${voClassName}.class);
         return pages;
     }
@@ -132,7 +191,14 @@ public class ${className} implements ${managerClassName} {
         if (vo != null) {
             BeanUtils.copyProperties(vo, entity);
         }
-        List<${entityClassName}> list = ${daoVar}.findList(entity);
+        List<${entityClassName}> list = null;
+        try {
+            list = ${daoVar}.findList(entity);
+        } catch (RuntimeException e) {
+            logger.error("查询所有异常", e);
+            e.printStackTrace();
+            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        }
         List<${voClassName}> listVo = BeanUtils.copyList(list, ${voClassName}.class);
         return listVo;
     }
@@ -142,7 +208,7 @@ public class ${className} implements ${managerClassName} {
         Searchable<${entityClassName}> searchable = SearchableUtil.getSearchable(pageVo);
 
         // TODO:添加条件 searchable.addSearchFilter("USERNAME", SearchOperator.like,
-        // vo.getUsername());
+        // "%" + vo.getUsername() + "%");
         
         if (searchable.getSort() == null) {
             searchable.addSort(Direction.DESC, "CREATED");
