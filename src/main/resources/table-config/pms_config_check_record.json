@@ -1,0 +1,21 @@
+{
+  "name": "pms_config_check_record",
+  "database": "pms2",
+  "entityName": "CheckRecord",
+  "realPath": {
+    "projectHome": "E:/workspace/pms2",
+    "entity": "com.winit.pms.base.entity",
+    "dao": "com.winit.pms.base.dao",
+    "mapper": "mybatis",
+    "manager": "com.winit.pms.base.manager",
+    "managerImpl": "com.winit.pms.base.manager.impl",
+    "serviceImpl": "com.winit.pms.base.service.impl",
+    "test": "com.winit.pms.base"
+  },
+  "interfacePath": {
+    "projectHome": "E:/workspace/spi",
+    "service": "com.winit.pms.spi.v2.base",
+    "vo": "com.winit.pms.spi.v2.base.vo",
+    "command": "com.winit.pms.spi.v2.base.command"
+  }
+}
