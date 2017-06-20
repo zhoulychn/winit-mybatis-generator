@@ -18,8 +18,6 @@ import com.winit.common.query.Page;
 import com.winit.common.query.Searchable;
 import com.winit.common.spi.SPIException;
 import com.winit.pms.spi.v2.common.PageVo;
-import com.winit.pms.spi.v2.common.PmsExceptionCode;
-import com.winit.pms.utils.BeanUtils;
 import com.winit.pms.utils.SearchableUtil;
 import com.winit.common.query.Sort.Direction;
 
@@ -44,169 +42,109 @@ public class ${className} implements ${managerClassName} {
     private ${daoClassName} ${daoVar};
 
     @Override
-    public ${voClassName} get(${voClassName} vo) throws SPIException {
+    public ${voClassName} get${entityName}(${voClassName} vo) throws SPIException {
         logger.info("单个查询：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
-        if (vo != null) {
-            BeanUtils.copyProperties(vo, entity);
-        }
-        try {
-            entity = ${daoVar}.get(entity);
-        } catch (RuntimeException e) {
-            logger.error("单个查询异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
-        }
+        this.copyVoToEntity(vo, entity);
+        entity = ${daoVar}.get(entity);
         ${voClassName} newVo = null;
         if (entity != null) {
             newVo = new ${voClassName}();
-            BeanUtils.copyProperties(entity, newVo);
+            this.copyEntityToVo(entity, newVo);
         }
         return newVo;
     }
 
     @Override
-    public Long add(${voClassName} vo) throws SPIException {
+    public Long create${entityName}(${voClassName} vo) throws SPIException {
         logger.info("新增：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
-        if (vo != null) {
-            BeanUtils.copyProperties(vo, entity);
-        }
+        this.copyVoToEntity(vo, entity);
 
         // TODO: 是否需要校验已存在
-        
-        try {
-            ${daoVar}.insertSingle(entity);
-        } catch (RuntimeException e) {
-            logger.error("新增异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
-        }
+        ${daoVar}.insertSingle(entity);
         return entity.getId();
     }
 
     @Override
-    public long addBatch(List<${voClassName}> vos) throws SPIException {
+    public long createBatch${entityName}(List<${voClassName}> vos) throws SPIException {
         logger.info("批量新增：{}", vos);
         List<${entityClassName}> list = new ArrayList<${entityClassName}>();
-        if (vos != null) {
-            list = BeanUtils.copyList(vos, ${entityClassName}.class);
+        for (${entityName}Vo vo : vos) {
+            ${entityName}Entity entity = new ${entityName}Entity();
+            this.copyVoToEntity(vo, entity);
+            list.add(entity);
         }
-        long count = 0L;
-        try {
-            count = ${daoVar}.insertBatch(list);
-        } catch (RuntimeException e) {
-            logger.error("批量新增异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
-        }
-        return count;
+        return ${daoVar}.insertBatch(list);
     }
 
     @Override
-    public long delete(${voClassName} vo) throws SPIException {
+    public long delete${entityName}(${voClassName} vo) throws SPIException {
         logger.info("删除：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
-        if (vo != null) {
-            BeanUtils.copyProperties(vo, entity);
-        }
-        long count = 0L;
-        try {
-            count = ${daoVar}.deleteSingle(entity);
-        } catch (RuntimeException e) {
-            logger.error("删除异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
-        }
-        return count;
+        this.copyVoToEntity(vo, entity);
+        return ${daoVar}.deleteSingle(entity);
     }
 
     @Override
-    public long deleteBatch(List<${voClassName}> vos) throws SPIException {
+    public long deleteBatch${entityName}(List<${voClassName}> vos) throws SPIException {
         logger.info("批量删除：{}", vos);
         List<${entityClassName}> list = new ArrayList<${entityClassName}>();
-        if (vos != null) {
-            list = BeanUtils.copyList(vos, ${entityClassName}.class);
+        for (${entityName}Vo vo : vos) {
+            ${entityName}Entity entity = new ${entityName}Entity();
+            this.copyVoToEntity(vo, entity);
+            list.add(entity);
         }
-        long count = 0L;
-        try {
-            count = ${daoVar}.deleteBatch(list);
-        } catch (RuntimeException e) {
-            logger.error("批量删除异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
-        }
-        return count;
+        return ${daoVar}.deleteBatch(list);
     }
 
     @Override
-    public long update(${voClassName} vo) throws SPIException {
+    public long update${entityName}(${voClassName} vo) throws SPIException {
         logger.info("更新：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
-        if (vo != null) {
-            BeanUtils.copyProperties(vo, entity);
-        }
-        long count = 0L;
-        try {
-            count = ${daoVar}.updateSingle(entity);
-        } catch (RuntimeException e) {
-            logger.error("更新异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
-        }
-        return count;
+        this.copyVoToEntity(vo, entity);
+        return ${daoVar}.updateSingle(entity);
     }
 
     @Override
-    public long updateBatch(List<${voClassName}> vos) throws SPIException {
+    public long updateBatch${entityName}(List<${voClassName}> vos) throws SPIException {
         logger.info("批量更新：{}", vos);
         List<${entityClassName}> list = new ArrayList<${entityClassName}>();
-        if (vos != null) {
-            list = BeanUtils.copyList(vos, ${entityClassName}.class);
+        for (${entityName}Vo vo : vos) {
+            ${entityName}Entity entity = new ${entityName}Entity();
+            this.copyVoToEntity(vo, entity);
+            list.add(entity);
         }
-        long count = 0L;
-        try {
-            count = ${daoVar}.updateBatch(list);
-        } catch (RuntimeException e) {
-            logger.error("批量更新异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
-        }
-        return count;
+        return ${daoVar}.updateBatch(list);
     }
 
     @Override
-    public Page<${voClassName}> find(PageVo pageVo, ${voClassName} vo) throws SPIException {
+    public Page<${voClassName}> find${entityName}(PageVo pageVo, ${voClassName} vo) throws SPIException {
         logger.info("分页查询：{}, vo:{}", pageVo, vo);
         Searchable<${entityClassName}> searchable = this.buildSearchable(pageVo, vo);
         PageBase<${entityClassName}> page = null;
-        try {
-            page = ${daoVar}.findPage(searchable);
-        } catch (RuntimeException e) {
-            logger.error("分页查询异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
+        page = ${daoVar}.findPage(searchable);
+        List<${entityName}Vo> vos = new ArrayList<${entityName}Vo>();
+        for (${entityName}Entity entity : page) {
+            ${entityName}Vo newVo = new ${entityName}Vo();
+            this.copyEntityToVo(entity, newVo);
+            vos.add(newVo);
         }
-        Page<${voClassName}> pages = BeanUtils.copyPageList(page, ${voClassName}.class);
-        return pages;
+        return new Page<${entityName}Vo>(vos, page.getPageable(), page.getTotalElements());
     }
 
     @Override
-    public List<${voClassName}> list(${voClassName} vo) throws SPIException {
+    public List<${voClassName}> list${entityName}(${voClassName} vo) throws SPIException {
         logger.info("查询所有：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
-        if (vo != null) {
-            BeanUtils.copyProperties(vo, entity);
+        BeanUtils.copyProperties(vo, entity);
+        List<${entityClassName}> list = ${daoVar}.findList(entity);;
+        List<${voClassName}> listVo = new ArrayList<${voClassName}>();
+        for (${entityName}Entity entity : list) {
+            ${entityName}Vo newVo = new ${entityName}Vo();
+            this.copyEntityToVo(entity, newVo);
+            listVo.add(newVo);
         }
-        List<${entityClassName}> list = null;
-        try {
-            list = ${daoVar}.findList(entity);
-        } catch (RuntimeException e) {
-            logger.error("查询所有异常", e);
-            e.printStackTrace();
-            throw new SPIException(PmsExceptionCode.SYS_01001200000);
-        }
-        List<${voClassName}> listVo = BeanUtils.copyList(list, ${voClassName}.class);
         return listVo;
     }
 
@@ -222,5 +160,19 @@ public class ${className} implements ${managerClassName} {
         }
         
         return searchable;
+    }
+    
+    /**
+     * 将实体属性拷贝到vo
+     */
+    private void copyEntityToVo(${entityName}Entity entity, ${entityName}Vo vo) {
+${entityToVos}
+    }
+    
+    /**
+     * 将vo属性拷贝到实体
+     */
+    private void copyVoToEntity(${entityName}Vo vo, ${entityName}Entity entity) {
+${voToEntitys}
     }
 }

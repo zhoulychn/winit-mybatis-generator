@@ -2,28 +2,28 @@
 <system>
   <category name="jdbc" description="数据库相关配置">
     <item name="driverName" value="com.mysql.jdbc.Driver" description="驱动名称"/>
-    <item name="url" value="jdbc:mysql://127.0.0.1:3306/test?useUnicode=yes&amp;characterEncoding=UTF8&amp;allowMultiQueries=true" description="url"/>
+    <item name="url" value="jdbc:mysql://172.16.3.134:3306/pms2?useUnicode=yes&amp;characterEncoding=UTF8&amp;allowMultiQueries=true" description="url"/>
     <item name="username" value="root" description="用户名"/>
-    <item name="password" value="123456" description="密码"/>
+    <item name="password" value="winit2015" description="密码"/>
   </category>
   
   <category name="base" description="基础配置">
     <item name="database" value="mysql" description="数据库"/>
     <item name="schemaPattern" value="root" description="每个用户对应一个同名的schema"/>
-    <item name="baseColumns" value="ORGANIZATION_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_DELETE" description="基本的字段"/>
-    <item name="tableNames" value="person,oms_wh_inbound_freeze_revenue" description="需要工具生成的表，逗号分隔"/>
-    <item name="entityNames" value="Person,FreezeRevenue" description="实体名，逗号分隔， 与上面的表名一一对应"/>
-    <item name="entityDescs" value="用户,冻结费用" description="实体描述， 与上面的实体名一一对应"/>
+    <item name="baseColumns" value="ORGANIZATION_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_DELETE,IS_ACTIVE" description="基本的字段"/>
+    <item name="tableNames" value="pms_warehouse_charge_rule,pms_warehouse_charge_price" description="需要工具生成的表，逗号分隔"/>
+    <item name="entityNames" value="WarehouseChargeRule,WarehouseChargePrice" description="实体名，逗号分隔， 与上面的表名一一对应"/>
+    <item name="entityDescs" value="仓储计费规则,仓储计费价格" description="实体描述， 与上面的实体名一一对应"/>
     <item name="baseDir" value="C:\Users\qiyongkang\Desktop\code" description="文件存放的根目录"/>
   </category>
   
   <category name="entity" description="实体配置">
-    <item name="package" value="org.qyk.dms.person.entity" description="包路径"/>
+    <item name="package" value="com.winit.pms.base.entity" description="包路径"/>
     <item name="path" value="entity" description="实体存放的路径，相对于baseDir"/>
   </category>
   
   <category name="dao" description="dao配置">
-    <item name="package" value="org.qyk.dms.person.dao" description="包路径"/>
+    <item name="package" value="com.winit.pms.base.dao" description="包路径"/>
     <item name="path" value="dao" description="dao存放的路径，相对于baseDir"/>
   </category>
   
@@ -32,27 +32,27 @@
   </category>
   
   <category name="vo" description="vo文件配置">
-    <item name="package" value="org.qyk.person.spi.vo" description="包路径"/>
+    <item name="package" value="com.winit.pms.spi.v2.base.vo" description="包路径"/>
     <item name="path" value="vo" description="vo存放的路径，相对于baseDir"/>
   </category>
   
   <category name="manager" description="manager配置">
-    <item name="package" value="org.qyk.dms.person.manager" description="包路径"/>
+    <item name="package" value="com.winit.pms.base.manager" description="包路径"/>
     <item name="path" value="manager" description="实体存放的路径，相对于baseDir"/>
   </category>
   
   <category name="managerImpl" description="managerImpl配置">
-    <item name="package" value="org.qyk.dms.person.manager.impl" description="包路径"/>
+    <item name="package" value="com.winit.pms.base.manager.impl" description="包路径"/>
     <item name="path" value="manager/impl" description="managerImpl存放的路径，相对于baseDir"/>
   </category>
   
   <category name="command" description="command配置">
-    <item name="package" value="org.qyk.person.spi.command" description="包路径"/>
+    <item name="package" value="com.winit.pms.spi.v2.base.command" description="包路径"/>
     <item name="path" value="command" description="command存放的路径，相对于baseDir"/>
   </category>
   
   <category name="service" description="service配置">
-    <item name="package" value="org.qyk.person.spi" description="包路径"/>
+    <item name="package" value="com.winit.pms.spi.v2.base" description="包路径"/>
     <item name="path" value="service" description="service存放的路径，相对于baseDir"/>
   </category>
   
@@ -62,7 +62,7 @@
   </category>
   
   <category name="serviceTest" description="service测试类配置">
-    <item name="package" value="org.qyk.dms.person.service" description="包路径"/>
+    <item name="package" value="com.winit.pms.base.service.impl" description="包路径"/>
     <item name="path" value="service" description="实体存放的路径，相对于baseDir"/>
   </category>
 </system>

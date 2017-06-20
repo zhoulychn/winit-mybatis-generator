@@ -32,7 +32,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    Long add(${entityName}Command command) throws SPIException;
+    Long create${entityName}(${entityName}Command command) throws SPIException;
 
     /**
      * 批量新增
@@ -40,7 +40,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean addBatch(${entityName}BatchCommand command) throws SPIException;
+    boolean createBatch${entityName}(${entityName}BatchCommand command) throws SPIException;
 
     /**
      * 单个删除
@@ -48,7 +48,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean delete(Get${entityName}Command command) throws SPIException;
+    boolean delete${entityName}(Get${entityName}Command command) throws SPIException;
 
     /**
      * 批量删除
@@ -64,7 +64,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean update(${entityName}Command command) throws SPIException;
+    boolean update${entityName}(${entityName}Command command) throws SPIException;
 
     /**
      * 批量更新
@@ -72,7 +72,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean updateBatch(${entityName}BatchCommand command) throws SPIException;
+    boolean updateBatch${entityName}(${entityName}BatchCommand command) throws SPIException;
 
     /**
      * 单个查询
@@ -80,7 +80,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    ${voClassName} get(Get${entityName}Command command) throws SPIException;
+    ${voClassName} get${entityName}(Get${entityName}Command command) throws SPIException;
 
     /**
      * 分页查询
@@ -88,7 +88,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    Page<${voClassName}> queryPage(${entityName}QueryCommand command) throws SPIException;
+    Page<${voClassName}> query${entityName}Page(${entityName}QueryCommand command) throws SPIException;
 
     /**
      * 查询所有
@@ -96,5 +96,5 @@ public interface ${className} {
      * @param command
      * @return
      */
-    List<${voClassName}> queryList(${entityName}QueryCommand command) throws SPIException;
+    List<${voClassName}> query${entityName}List(${entityName}QueryCommand command) throws SPIException;
 }

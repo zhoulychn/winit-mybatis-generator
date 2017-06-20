@@ -1,6 +1,7 @@
 package com.winit.generator.handler.impl;
 
 import java.io.File;
+import java.util.Set;
 
 import com.winit.generator.config.Configuration;
 import com.winit.generator.handler.BaseHandler;
@@ -31,6 +32,22 @@ public class ManagerImplHandler extends BaseHandler<ManagerImplInfo> {
         this.param.put("daoVar", info.getDaoVar());
         this.param.put("entityClassName", info.getEntityClassName());
         this.param.put("voClassName", info.getVoClassName());
+        this.param.put("entityName", info.getEntityInfo().getEntityName());
+        
+        StringBuilder entityToVos = new StringBuilder();
+        StringBuilder voToEntitys = new StringBuilder();
+        
+        Set<String> keys = info.getEntityInfo().getPropTypes().keySet();
+        for (String key : keys) {
+            String prop = key.substring(0, 1).toUpperCase() + key.substring(1);
+            
+            entityToVos.append("        vo.set")
+            .append(prop).append("(entity.get").append(prop).append("());\r\n");
+            voToEntitys.append("        entity.set")
+            .append(prop).append("(vo.get").append(prop).append("());\r\n");
+        }
+        this.param.put("entityToVos", entityToVos.substring(0, entityToVos.length() - 2));
+        this.param.put("voToEntitys", voToEntitys.substring(0, voToEntitys.length() - 2));
     }
 
 }

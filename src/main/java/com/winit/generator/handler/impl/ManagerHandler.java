@@ -24,6 +24,7 @@ public class ManagerHandler extends BaseHandler<ManagerInfo> {
         this.param.put("entityDesc", info.getEntityDesc());
         this.param.put("className", info.getClassName());
         this.param.put("voClassName", info.getVoClassName());
+        this.param.put("entityName", info.getVoInfo().getEntityInfo().getEntityName());
     }
 
 }

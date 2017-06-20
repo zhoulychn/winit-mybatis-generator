@@ -15,6 +15,7 @@ import com.winit.generator.framework.context.ApplicationContext;
 import com.winit.generator.model.ColumnInfo;
 import com.winit.generator.model.TableInfo;
 import com.winit.generator.util.DbUtil;
+import com.winit.generator.util.FileHelper;
 import com.winit.generator.util.PropertyUtil;
 import com.winit.generator.util.StringUtil;
 
@@ -23,6 +24,10 @@ public class InitTask extends AbstractApplicationTask {
     @Override
     protected boolean doInternal(ApplicationContext context) throws Exception {
         logger.info("初始化任务");
+        
+        //首先清空baseDir下的所有文件
+        String baseDir = Configuration.getString("base.baseDir");
+        FileHelper.deleteDirectory(baseDir);
         
         //加载属性文件
         //字段类型与属性类型的映射
