@@ -56,7 +56,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean deleteBatch(List${entityName}Command command) throws SPIException;
+    boolean deleteBatch${entityName}(List${entityName}Command command) throws SPIException;
 
     /**
      * 单个更新

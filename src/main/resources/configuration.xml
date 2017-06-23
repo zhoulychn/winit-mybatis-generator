@@ -2,7 +2,7 @@
 <system>
   <category name="jdbc" description="数据库相关配置">
     <item name="driverName" value="com.mysql.jdbc.Driver" description="驱动名称"/>
-    <item name="url" value="jdbc:mysql://172.16.3.134:3306/pms2?useUnicode=yes&amp;characterEncoding=UTF8&amp;allowMultiQueries=true" description="url"/>
+    <item name="url" value="jdbc:mysql://172.16.3.171:3306/pms2?useUnicode=yes&amp;characterEncoding=UTF8&amp;allowMultiQueries=true" description="url"/>
     <item name="username" value="root" description="用户名"/>
     <item name="password" value="winit2015" description="密码"/>
   </category>
@@ -11,9 +11,9 @@
     <item name="database" value="mysql" description="数据库"/>
     <item name="schemaPattern" value="root" description="每个用户对应一个同名的schema"/>
     <item name="baseColumns" value="ORGANIZATION_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_DELETE,IS_ACTIVE" description="基本的字段"/>
-    <item name="tableNames" value="pms_warehouse_charge_rule,pms_warehouse_charge_price" description="需要工具生成的表，逗号分隔"/>
-    <item name="entityNames" value="WarehouseChargeRule,WarehouseChargePrice" description="实体名，逗号分隔， 与上面的表名一一对应"/>
-    <item name="entityDescs" value="仓储计费规则,仓储计费价格" description="实体描述， 与上面的实体名一一对应"/>
+    <item name="tableNames" value="pms_egd_sla,pms_egd_sla_limit" description="需要工具生成的表，逗号分隔"/>
+    <item name="entityNames" value="EgdSla,EgdSlaLimit" description="实体名，逗号分隔， 与上面的表名一一对应"/>
+    <item name="entityDescs" value="尾程时效,EGD时效限制" description="实体描述， 与上面的实体名一一对应"/>
     <item name="baseDir" value="C:\Users\qiyongkang\Desktop\code" description="文件存放的根目录"/>
   </category>
   
@@ -57,12 +57,12 @@
   </category>
   
   <category name="serviceImpl" description="serviceImpl配置">
-    <item name="package" value="org.qyk.dms.person.service.impl" description="包路径"/>
+    <item name="package" value="com.winit.pms.base.service.impl" description="包路径"/>
     <item name="path" value="service/impl" description="实体存放的路径，相对于baseDir"/>
   </category>
   
   <category name="serviceTest" description="service测试类配置">
-    <item name="package" value="com.winit.pms.base.service.impl" description="包路径"/>
+    <item name="package" value="com.winit.pms.base" description="包路径"/>
     <item name="path" value="service" description="实体存放的路径，相对于baseDir"/>
   </category>
 </system>

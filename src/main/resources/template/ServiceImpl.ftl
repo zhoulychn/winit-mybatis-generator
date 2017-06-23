@@ -95,7 +95,7 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
             vo.setIsActive(PmsConstants.ACTIVE_Y);
             vo.setIsDelete(PmsConstants.DELETE_N);
         }
-        long count = ${lowerEntityName}Manager.addBatch${entityName}(vos);
+        long count = ${lowerEntityName}Manager.createBatch${entityName}(vos);
         if (count > 0) {
             return true;
         } else {

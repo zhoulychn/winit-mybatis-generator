@@ -122,8 +122,7 @@ public class ${className} implements ${managerClassName} {
     public Page<${voClassName}> find${entityName}(PageVo pageVo, ${voClassName} vo) throws SPIException {
         logger.info("分页查询：{}, vo:{}", pageVo, vo);
         Searchable<${entityClassName}> searchable = this.buildSearchable(pageVo, vo);
-        PageBase<${entityClassName}> page = null;
-        page = ${daoVar}.findPage(searchable);
+        PageBase<${entityClassName}> page = ${daoVar}.findPage(searchable);
         List<${entityName}Vo> vos = new ArrayList<${entityName}Vo>();
         for (${entityName}Entity entity : page) {
             ${entityName}Vo newVo = new ${entityName}Vo();
@@ -137,12 +136,12 @@ public class ${className} implements ${managerClassName} {
     public List<${voClassName}> list${entityName}(${voClassName} vo) throws SPIException {
         logger.info("查询所有：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
-        BeanUtils.copyProperties(vo, entity);
+        this.copyVoToEntity(vo, entity);
         List<${entityClassName}> list = ${daoVar}.findList(entity);;
         List<${voClassName}> listVo = new ArrayList<${voClassName}>();
-        for (${entityName}Entity entity : list) {
+        for (${entityName}Entity newEntity : list) {
             ${entityName}Vo newVo = new ${entityName}Vo();
-            this.copyEntityToVo(entity, newVo);
+            this.copyEntityToVo(newEntity, newVo);
             listVo.add(newVo);
         }
         return listVo;
@@ -166,6 +165,7 @@ public class ${className} implements ${managerClassName} {
      * 将实体属性拷贝到vo
      */
     private void copyEntityToVo(${entityName}Entity entity, ${entityName}Vo vo) {
+        if (entity == null) return;
 ${entityToVos}
     }
     
@@ -173,6 +173,7 @@ ${entityToVos}
      * 将vo属性拷贝到实体
      */
     private void copyVoToEntity(${entityName}Vo vo, ${entityName}Entity entity) {
+        if (vo == null) return;
 ${voToEntitys}
     }
 }

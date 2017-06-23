@@ -63,7 +63,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         command.setCtx(this.createContext());
         ${entityName}Vo vo = new ${entityName}Vo();
         command.setVo(vo);
-        Long id = ${lowerEntityName}Service.add(command);
+        Long id = ${lowerEntityName}Service.create${entityName}(command);
         System.out.println("id:" + id);
     }
 
@@ -79,7 +79,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         list.add(v2);
         command.setVos(list);
 
-        boolean isSuccess = ${lowerEntityName}Service.addBatch(command);
+        boolean isSuccess = ${lowerEntityName}Service.createBatch${entityName}(command);
         System.out.println("isSuccess:" + isSuccess);
     }
 
@@ -89,7 +89,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         Get${entityName}Command command = new Get${entityName}Command();
         command.setCtx(this.createContext());
         command.setId(101L);
-        boolean isSuccess = ${lowerEntityName}Service.delete(command);
+        boolean isSuccess = ${lowerEntityName}Service.delete${entityName}(command);
         System.out.println("是否成功：" + isSuccess);
     }
 
@@ -103,7 +103,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         ids.add(1L);
         ids.add(2L);
         command.setIds(ids);
-        boolean isSuccess = ${lowerEntityName}Service.deleteBatch(command);
+        boolean isSuccess = ${lowerEntityName}Service.deleteBatch${entityName}(command);
         System.out.println("是否成功：" + isSuccess);
     }
 
@@ -115,7 +115,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         ${entityName}Vo vo = new ${entityName}Vo();
         vo.setId(1L);
         command.setVo(vo);
-        boolean isSuccess = ${lowerEntityName}Service.update(command);
+        boolean isSuccess = ${lowerEntityName}Service.update${entityName}(command);
         System.out.println("是否成功：" + isSuccess);
     }
 
@@ -133,7 +133,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         list.add(v2);
         command.setVos(list);
 
-        boolean isSuccess = ${lowerEntityName}Service.updateBatch(command);
+        boolean isSuccess = ${lowerEntityName}Service.updateBatch${entityName}(command);
         System.out.println("isSuccess:" + isSuccess);
     }
 
@@ -142,7 +142,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         Get${entityName}Command command = new Get${entityName}Command();
         command.setCtx(this.createContext());
         command.setId(1L);
-        ${entityName}Vo vo = ${lowerEntityName}Service.get(command);
+        ${entityName}Vo vo = ${lowerEntityName}Service.get${entityName}(command);
         System.out.println("vo：" + vo);
     }
 
@@ -159,7 +159,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         ${entityName}Vo vo = new ${entityName}Vo();
         command.setVo(vo);
 
-        Page<${entityName}Vo> page = ${lowerEntityName}Service.queryPage(command);
+        Page<${entityName}Vo> page = ${lowerEntityName}Service.query${entityName}Page(command);
         System.out.println("page:" + page);
         if (page == null) return;
         for (${entityName}Vo v : page.getContent()) {
@@ -174,7 +174,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         ${entityName}Vo vo = new ${entityName}Vo();
         command.setVo(vo);
 
-        List<${entityName}Vo> list = ${lowerEntityName}Service.queryList(command);
+        List<${entityName}Vo> list = ${lowerEntityName}Service.query${entityName}List(command);
         for (${entityName}Vo v : list) {
             System.out.println("vo:" + v);
         }
