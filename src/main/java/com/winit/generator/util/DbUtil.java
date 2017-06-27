@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,7 +65,11 @@ public class DbUtil {
             String jdbcUrl = Configuration.getString("jdbc.url");
             String userName = Configuration.getString("jdbc.username");
             String password = Configuration.getString("jdbc.password");
-            conn = DriverManager.getConnection(jdbcUrl, userName, password);
+            Properties props = new Properties();  
+            props.put("remarksReporting", "true");  
+            props.put("user", userName);  
+            props.put("password", password);
+            conn = DriverManager.getConnection(jdbcUrl, props);
         } catch (SQLException e) {
             logger.error("数据连接异常", e);
             e.printStackTrace();

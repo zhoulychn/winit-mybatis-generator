@@ -66,16 +66,16 @@ public class CommandTask extends AbstractApplicationTask {
             CommandInfo commandInfo = commandInfos.get(i);
             service = new ServiceInfo();
             
-            service.setBatchCommandType(commandInfo.getPackageStr() + "." + commandInfo.getBatchClassName());
+            service.setBatchCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getBatchClassName());
             service.setClassName(entityInfo.getEntityName() + Constants.SERVICE_SUFFIX);
             service.setCommandInfo(commandInfo);
-            service.setCommandType(commandInfo.getPackageStr() + "." + commandInfo.getClassName());
+            service.setCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getClassName());
             service.setEntityDesc(entityInfo.getEntityDesc());
             service.setEntityName(entityInfo.getEntityName());
-            service.setGetCommandType(commandInfo.getPackageStr() + "." + commandInfo.getGetClassName());
-            service.setListCommandType(commandInfo.getPackageStr() + "." + commandInfo.getListClassName());
+            service.setGetCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getGetClassName());
+            service.setListCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getListClassName());
             service.setPackageStr(Configuration.getString("service.package"));
-            service.setQueryCommandType(commandInfo.getPackageStr() + "." + commandInfo.getQueryClassName());
+            service.setQueryCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getQueryClassName());
             service.setVoClassName(commandInfo.getVoClassName());
             service.setVoType(commandInfo.getVoType());
             

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.winit.generator.Constants;
 import com.winit.generator.config.Configuration;
 import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.model.EntityInfo;
@@ -18,7 +19,7 @@ public class VoHandler extends BaseHandler<VoInfo> {
         this.info = info;
         this.savePath = Configuration.getString("base.baseDir") 
                 + File.separator + Configuration.getString("vo.path")
-                + File.separator + info.getClassName() + ".java";
+                + File.separator + info.getClassName() + Constants.FILE_SUFFIX_JAVA;
     }
 
     @Override

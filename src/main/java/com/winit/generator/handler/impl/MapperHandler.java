@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.winit.generator.Constants;
 import com.winit.generator.config.Configuration;
 import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.model.MapperInfo;
@@ -15,7 +16,7 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
         this.info = info;
         this.savePath = Configuration.getString("base.baseDir") 
                 + File.separator + Configuration.getString("mapperXml.path")
-                + File.separator + info.getFileName() + ".xml";
+                + File.separator + info.getFileName() + Constants.FILE_SUFFIX_XML;
         
     }
     
@@ -26,6 +27,7 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
         this.param.put("namespace", info.getNamespace());
         this.param.put("entityType", info.getEntityInfo().getPackageClassName());
         this.param.put("tableName", info.getEntityInfo().getTableName());
+        this.param.put("tableNameUpper", this.param.get("tableName").toUpperCase());
         this.param.put("entityName", info.getEntityInfo().getEntityName());
         
         StringBuilder resultMap = new StringBuilder();
@@ -84,7 +86,9 @@ public class MapperHandler extends BaseHandler<MapperInfo> {
             }
             baseColumn.append(columnName).append(",");
             
-            if (!("updated".equals(propName)) && !("updatedby".equals(propName)) && !("id".equals(propName))) {
+            //如果是oracle，那么单个新增的时候id要带着
+            
+            if (!("updated".equals(propName)) && !("updatedby".equals(propName)) && !("id".equals(propName) && Configuration.getString("base.database").equals(Constants.DB_MYSQL))) {
                 /**
                  * <if test="id != null">
                      ID,

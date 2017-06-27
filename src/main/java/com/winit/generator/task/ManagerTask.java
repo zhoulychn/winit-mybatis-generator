@@ -71,15 +71,15 @@ public class ManagerTask extends AbstractApplicationTask {
             managerImplInfo.setAnnotationName(managerInfo.getClassName().substring(0, 1).toLowerCase() + managerInfo.getClassName().substring(1));
             managerImplInfo.setClassName(entityInfo.getEntityName() + Constants.MANAGER_IMPL_SUFFIX);
             managerImplInfo.setDaoClassName(daoInfo.getClassName());
-            managerImplInfo.setDaoType(daoInfo.getPackageStr() + "." + daoInfo.getClassName());
+            managerImplInfo.setDaoType(daoInfo.getPackageStr() + Constants.CHARACTER_POINT + daoInfo.getClassName());
             managerImplInfo.setDaoVar(daoInfo.getClassName().substring(0, 1).toLowerCase() + daoInfo.getClassName().substring(1));
             managerImplInfo.setEntityClassName(entityInfo.getClassName());
             managerImplInfo.setEntityType(entityInfo.getPackageClassName());
             managerImplInfo.setManagerClassName(managerInfo.getClassName());
-            managerImplInfo.setManagerType(managerInfo.getPackageStr() + "." + managerInfo.getClassName());
+            managerImplInfo.setManagerType(managerInfo.getPackageStr() + Constants.CHARACTER_POINT + managerInfo.getClassName());
             managerImplInfo.setPackageStr(Configuration.getString("managerImpl.package"));
             managerImplInfo.setVoClassName(voInfo.getClassName());
-            managerImplInfo.setVoType(voInfo.getPackageStr() + "." + voInfo.getClassName());
+            managerImplInfo.setVoType(voInfo.getPackageStr() + Constants.CHARACTER_POINT + voInfo.getClassName());
             
             managerImplInfos.add(managerImplInfo);
         }

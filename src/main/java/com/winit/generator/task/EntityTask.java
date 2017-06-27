@@ -50,7 +50,7 @@ public class EntityTask extends AbstractApplicationTask {
             daoInfo = new DaoInfo();
             daoInfo.setClassName(entityInfo.getEntityName() + Constants.DAO_SUFFIX);
             daoInfo.setEntityInfo(entityInfo);
-            daoInfo.setImportStr("import " + entityInfo.getEntityPackage() + "." + entityInfo.getClassName() + ";");
+            daoInfo.setImportStr("import " + entityInfo.getEntityPackage() + Constants.CHARACTER_POINT + entityInfo.getClassName() + Constants.CHARACTER_SPLIT);
             daoInfo.setPackageStr(Configuration.getString("dao.package"));
             daoList.add(daoInfo);
             

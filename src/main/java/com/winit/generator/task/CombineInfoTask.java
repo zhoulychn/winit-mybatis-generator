@@ -70,11 +70,18 @@ public class CombineInfoTask extends AbstractApplicationTask {
                 
                 //通过字段名生成属性名
                 String propName = StringUtil.convertFieldName2PropName(fieldName);
-                String propType = PropertyUtil.getValueByKey(fieldType);
+                
+                //这里为了兼容oracle，number类型，如果小数精度为0，则映射成Long类型
+                String propType = null;
+                if (Constants.DBTYPE_NUMBER.equals(fieldType) && columnInfo.getPrecision() == 0) {
+                    propType = Constants.PROPTYPE_LONG;
+                } else {
+                    propType = PropertyUtil.getValueByKey(fieldType);
+                }
                 
                 propTypes.put(propName, propType);
                 propRemarks.put(propName, columnInfo.getRemark());
-                propJdbcTypes.put(propName, PropertyUtil.getValueByKey("_" + propType));
+                propJdbcTypes.put(propName, PropertyUtil.getValueByKey(Constants.CHARACTER_BOTTOM_LINE + propType));
                 propName2ColumnNames.put(propName, columnInfo.getName().toUpperCase());
             }
             logger.info("属性类型：{}", propTypes);
@@ -94,7 +101,7 @@ public class CombineInfoTask extends AbstractApplicationTask {
             entityInfo.setPropJdbcTypes(propJdbcTypes);
             entityInfo.setPropNameColumnNames(propName2ColumnNames);
             entityInfo.setImports(imports);
-            entityInfo.setPackageClassName(entityInfo.getEntityPackage() + "." + entityInfo.getClassName());
+            entityInfo.setPackageClassName(entityInfo.getEntityPackage() + Constants.CHARACTER_POINT + entityInfo.getClassName());
             entityInfos.add(entityInfo);
         }
         

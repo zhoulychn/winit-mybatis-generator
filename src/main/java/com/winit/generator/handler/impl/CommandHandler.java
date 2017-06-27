@@ -2,6 +2,7 @@ package com.winit.generator.handler.impl;
 
 import java.io.File;
 
+import com.winit.generator.Constants;
 import com.winit.generator.config.Configuration;
 import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.model.CommandInfo;
@@ -16,7 +17,7 @@ public class CommandHandler extends BaseHandler<CommandInfo> {
         this.info = info;
         this.savePath = Configuration.getString("base.baseDir") 
                 + File.separator + Configuration.getString("command.path")
-                + File.separator + this.className + ".java";
+                + File.separator + this.className + Constants.FILE_SUFFIX_JAVA;
     }
     
     @Override

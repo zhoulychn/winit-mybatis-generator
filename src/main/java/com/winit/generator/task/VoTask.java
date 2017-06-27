@@ -52,14 +52,14 @@ public class VoTask extends AbstractApplicationTask {
             managerInfo.setEntityDesc(entityInfo.getEntityDesc());
             managerInfo.setPackageStr(Configuration.getString("manager.package"));
             managerInfo.setVoClassName(voInfo.getClassName());
-            managerInfo.setVoType(voInfo.getPackageStr() + "." + voInfo.getClassName());
+            managerInfo.setVoType(voInfo.getPackageStr() + Constants.CHARACTER_POINT + voInfo.getClassName());
             managerInfo.setVoInfo(voInfo);
             
             
             commandInfo.setEntityName(entityInfo.getEntityName());
             commandInfo.setPackageStr(Configuration.getString("command.package"));
             commandInfo.setVoClassName(voInfo.getClassName());
-            commandInfo.setVoType(voInfo.getPackageStr() + "." + voInfo.getClassName());
+            commandInfo.setVoType(voInfo.getPackageStr() + Constants.CHARACTER_POINT + voInfo.getClassName());
             commandInfo.setClassName(entityInfo.getEntityName() + Constants.COMMAND_SUFFIX);
             commandInfo.setGetClassName("Get" + entityInfo.getEntityName() + Constants.COMMAND_SUFFIX);
             commandInfo.setQueryClassName(entityInfo.getEntityName() + "Query" + Constants.COMMAND_SUFFIX);

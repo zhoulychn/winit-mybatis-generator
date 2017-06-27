@@ -56,18 +56,18 @@ public class ServiceTask extends AbstractApplicationTask {
             serviceImplInfo = new ServiceImplInfo();
             serviceTestInfo = new ServiceTestInfo();
             CommandInfo commandInfo = serviceInfo.getCommandInfo();
-            serviceImplInfo.setBatchCommandType(commandInfo.getPackageStr() + "." + commandInfo.getBatchClassName());
+            serviceImplInfo.setBatchCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getBatchClassName());
             serviceImplInfo.setClassName(commandInfo.getEntityName() + Constants.SERVICE_IMPL_SUFFIX);
-            serviceImplInfo.setCommandType(commandInfo.getPackageStr() + "." + commandInfo.getClassName());
+            serviceImplInfo.setCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getClassName());
             serviceImplInfo.setEntityDesc(entityInfo.getEntityDesc());
             serviceImplInfo.setEntityName(entityInfo.getEntityName());
-            serviceImplInfo.setGetCommandType(commandInfo.getPackageStr() + "." + commandInfo.getGetClassName());
-            serviceImplInfo.setListCommandType(commandInfo.getPackageStr() + "." + commandInfo.getListClassName());
+            serviceImplInfo.setGetCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getGetClassName());
+            serviceImplInfo.setListCommandType(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getListClassName());
             serviceImplInfo.setLowerEntityName(entityInfo.getEntityName().substring(0, 1).toLowerCase() + entityInfo.getEntityName().substring(1));
-            serviceImplInfo.setManagerType(managerInfo.getPackageStr() + "." + managerInfo.getClassName());
+            serviceImplInfo.setManagerType(managerInfo.getPackageStr() + Constants.CHARACTER_POINT + managerInfo.getClassName());
             serviceImplInfo.setPackageStr(Configuration.getString("serviceImpl.package"));
-            serviceImplInfo.setQueryCommand(commandInfo.getPackageStr() + "." + commandInfo.getQueryClassName());
-            serviceImplInfo.setServiceType(serviceInfo.getPackageStr() + "." + serviceInfo.getClassName());
+            serviceImplInfo.setQueryCommand(commandInfo.getPackageStr() + Constants.CHARACTER_POINT + commandInfo.getQueryClassName());
+            serviceImplInfo.setServiceType(serviceInfo.getPackageStr() + Constants.CHARACTER_POINT + serviceInfo.getClassName());
             serviceImplInfo.setVoType(commandInfo.getVoType());
             
             serviceTestInfo.setClassName(commandInfo.getEntityName() + Constants.SERVICE_TEST_SUFFIX);

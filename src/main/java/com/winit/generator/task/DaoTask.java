@@ -44,7 +44,7 @@ public class DaoTask extends AbstractApplicationTask {
             mapperInfo.setDaoInfo(daoInfo);
             mapperInfo.setEntityInfo(daoInfo.getEntityInfo());
             mapperInfo.setFileName(daoInfo.getEntityInfo().getEntityName() + Constants.MAPPER_XML_SUFFIX);
-            mapperInfo.setNamespace(daoInfo.getPackageStr() + "." + daoInfo.getClassName());
+            mapperInfo.setNamespace(daoInfo.getPackageStr() + Constants.CHARACTER_POINT + daoInfo.getClassName());
             mapperInfos.add(mapperInfo);
         }
         context.setAttribute("mapperInfos", mapperInfos);

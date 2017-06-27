@@ -31,7 +31,11 @@ public class InitTask extends AbstractApplicationTask {
         
         //加载属性文件
         //字段类型与属性类型的映射
-        PropertyUtil.loadProp("columnType2PropType.properties");
+        if (Configuration.getString("base.database").equals(Constants.DB_ORACLE)) {
+            PropertyUtil.loadProp("columnType2PropType_oracle.properties");
+        } else {
+            PropertyUtil.loadProp("columnType2PropType.properties");
+        }
         
         //属性类型与包类名的映射
         PropertyUtil.loadProp("propType2Package.properties");
@@ -41,7 +45,7 @@ public class InitTask extends AbstractApplicationTask {
         
         //加载基本的7个字段到list
         String baseColumnsStr = Configuration.getString("base.baseColumns");
-        String[] baseColumnsArr = baseColumnsStr.split(",");
+        String[] baseColumnsArr = baseColumnsStr.split(Constants.CHARACTER_COMMA);
         List<String> baseColumnList = new ArrayList<String>();
         for (String str : baseColumnsArr) {
             baseColumnList.add(str.toUpperCase());
@@ -50,14 +54,14 @@ public class InitTask extends AbstractApplicationTask {
         
         
         //获取所有需要生成的表名
-        List<String> tableList = StringUtil.splitStr2List(Configuration.getString("base.tableNames"), ",");
+        List<String> tableList = StringUtil.splitStr2List(Configuration.getString("base.tableNames").toLowerCase(), Constants.CHARACTER_COMMA);
         logger.info("需要生成的表：{}", tableList);
         
         //对应的实体名
-        List<String> entityNames = StringUtil.splitStr2List(Configuration.getString("base.entityNames"), ",");
+        List<String> entityNames = StringUtil.splitStr2List(Configuration.getString("base.entityNames"), Constants.CHARACTER_COMMA);
         
         //实体对应的描述
-        List<String> entityDescs = StringUtil.splitStr2List(Configuration.getString("base.entityDescs"), ",");
+        List<String> entityDescs = StringUtil.splitStr2List(Configuration.getString("base.entityDescs"), Constants.CHARACTER_COMMA);
         
         //添加映射关系
         Map<String, String> table2Entity = new HashMap<String, String>();
@@ -86,7 +90,12 @@ public class InitTask extends AbstractApplicationTask {
             String schemaPattern = Configuration.getString("base.schemaPattern");
             
             //获取表的结果集
-            tableRS = dbMetaData.getTables(null, schemaPattern, Constants.EMPTY_STR, new String[] {"TABLE"});
+            if (Configuration.getString("base.database").equals(Constants.DB_ORACLE)) {
+                tableRS = dbMetaData.getTables(null, schemaPattern, Constants.PERCENT, new String[] {"TABLE"});
+            } else {
+                tableRS = dbMetaData.getTables(null, schemaPattern, Constants.EMPTY_STR, new String[] {"TABLE"});
+            }
+            
             
             //遍历
             Map<String, TableInfo> tableInfos = new HashMap<String, TableInfo>();
@@ -113,7 +122,11 @@ public class InitTask extends AbstractApplicationTask {
                     
                     //字段
                     //获取列的结果集
-                    columnRS = dbMetaData.getColumns(null,schemaPattern, tableName, Constants.EMPTY_STR);
+                    if (Configuration.getString("base.database").equals(Constants.DB_ORACLE)) {
+                        columnRS = dbMetaData.getColumns(null, schemaPattern, tableName.toUpperCase(), Constants.PERCENT);
+                    } else {
+                        columnRS = dbMetaData.getColumns(null, schemaPattern, tableName, Constants.EMPTY_STR);
+                    }
                     
                     List<ColumnInfo> columnList = new ArrayList<ColumnInfo>();
                     while(columnRS.next()) {
