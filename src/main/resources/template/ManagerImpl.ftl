@@ -150,13 +150,17 @@ public class ${className} implements ${managerClassName} {
     @SuppressWarnings("unchecked")
     private Searchable<${entityClassName}> buildSearchable(PageVo pageVo, ${voClassName} vo) {
         Searchable<${entityClassName}> searchable = SearchableUtil.getSearchable(pageVo);
-
-        // TODO:添加条件 searchable.addSearchFilter("USERNAME", SearchOperator.like,
-        // "%" + vo.getUsername() + "%");
         
         if (searchable.getSort() == null) {
             searchable.addSort(Direction.DESC, "CREATED");
         }
+        
+        if (vo == null) {
+            return searchable;
+        }
+        
+        // TODO:添加条件 searchable.addSearchFilter("USERNAME", SearchOperator.like,
+        // "%" + vo.getUsername() + "%");
         
         return searchable;
     }
