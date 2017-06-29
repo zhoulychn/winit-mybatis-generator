@@ -8,12 +8,13 @@ import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.model.ServiceImplInfo;
 
 public class ServiceImplHandler extends BaseHandler<ServiceImplInfo> {
+
     public ServiceImplHandler(String ftlName, ServiceImplInfo info){
         this.ftlName = ftlName;
         this.info = info;
-        this.savePath = Configuration.getString("base.baseDir") 
-                + File.separator + Configuration.getString("serviceImpl.path")
-                + File.separator + info.getClassName() + Constants.FILE_SUFFIX_JAVA;
+        this.savePath = Configuration.getString("base.baseDir") + File.separator
+                        + Configuration.getString("serviceImpl.path") + File.separator + info.getClassName()
+                        + Constants.FILE_SUFFIX_JAVA;
     }
 
     @Override

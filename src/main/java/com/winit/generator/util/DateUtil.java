@@ -26,8 +26,9 @@ import java.util.Date;
  * @see
  */
 public class DateUtil {
+
     public static String PATTERN_YMD = "yyyy-MM-dd";
-    public static String PATTERN_MD = "MM-dd";
+    public static String PATTERN_MD  = "MM-dd";
 
     public static Date strFormatYMDDate(String str) {
         SimpleDateFormat sdf = new SimpleDateFormat(PATTERN_YMD);
@@ -72,35 +73,35 @@ public class DateUtil {
         int week = calendar.get(Calendar.DAY_OF_WEEK);
         String str = "";
         switch (week) {
-        case 1:
-            str = "星期天";
-            break;
-        case 2:
-            str = "星期一";
-            break;
-        case 3:
-            str = "星期二";
-            break;
-        case 4:
-            str = "星期三";
-            break;
-        case 5:
-            str = "星期四";
-            break;
-        case 6:
-            str = "星期五";
-            break;
-        case 7:
-            str = "星期六";
-            break;
+            case 1:
+                str = "星期天";
+                break;
+            case 2:
+                str = "星期一";
+                break;
+            case 3:
+                str = "星期二";
+                break;
+            case 4:
+                str = "星期三";
+                break;
+            case 5:
+                str = "星期四";
+                break;
+            case 6:
+                str = "星期五";
+                break;
+            case 7:
+                str = "星期六";
+                break;
         }
 
         return str;
     }
-    
+
     /**
-     * 
      * 日期按指定pattern转为字符串
+     * 
      * @param date
      * @param pattern
      * @return

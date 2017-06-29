@@ -8,16 +8,16 @@ import com.winit.generator.handler.BaseHandler;
 import com.winit.generator.model.ManagerInfo;
 
 public class ManagerHandler extends BaseHandler<ManagerInfo> {
-    
-    public ManagerHandler(String ftlName, ManagerInfo info) {
+
+    public ManagerHandler(String ftlName, ManagerInfo info){
         this.ftlName = ftlName;
         this.info = info;
-        this.savePath = Configuration.getString("base.baseDir") 
-                + File.separator + Configuration.getString("manager.path")
-                + File.separator + info.getClassName() + Constants.FILE_SUFFIX_JAVA;
-        
+        this.savePath = Configuration.getString("base.baseDir") + File.separator
+                        + Configuration.getString("manager.path") + File.separator + info.getClassName()
+                        + Constants.FILE_SUFFIX_JAVA;
+
     }
-    
+
     @Override
     public void combileParams(ManagerInfo info) {
         this.param.put("packageStr", info.getPackageStr());

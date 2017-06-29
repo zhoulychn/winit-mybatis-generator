@@ -3,9 +3,10 @@ package com.winit.generator.model;
 import java.util.List;
 
 public class TableInfo {
-    private String name;
-    private String type;
-    private String remark;
+
+    private String           name;
+    private String           type;
+    private String           remark;
     private List<ColumnInfo> columnList;
 
     public String getName() {

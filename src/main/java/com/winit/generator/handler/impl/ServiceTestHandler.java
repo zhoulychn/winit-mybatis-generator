@@ -9,15 +9,15 @@ import com.winit.generator.model.ServiceImplInfo;
 import com.winit.generator.model.ServiceTestInfo;
 
 public class ServiceTestHandler extends BaseHandler<ServiceTestInfo> {
-    
-    public ServiceTestHandler(String ftlName, ServiceTestInfo info) {
+
+    public ServiceTestHandler(String ftlName, ServiceTestInfo info){
         this.ftlName = ftlName;
         this.info = info;
-        this.savePath = Configuration.getString("base.baseDir") 
-                + File.separator + Configuration.getString("serviceTest.path")
-                + File.separator + info.getClassName() + Constants.FILE_SUFFIX_JAVA;
+        this.savePath = Configuration.getString("base.baseDir") + File.separator
+                        + Configuration.getString("serviceTest.path") + File.separator + info.getClassName()
+                        + Constants.FILE_SUFFIX_JAVA;
     }
-    
+
     @Override
     public void combileParams(ServiceTestInfo serviceTestInfo) {
         ServiceImplInfo info = serviceTestInfo.getServiceImplInfo();

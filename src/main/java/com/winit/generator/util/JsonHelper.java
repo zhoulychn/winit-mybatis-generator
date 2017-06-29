@@ -18,63 +18,47 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-
 /**
  * ClassName:JsonHelper <br/>
  * Function: Json工具类. <br/>
- * Date:     2017年2月23日 下午3:44:17 <br/>
- * @author   qiyongkang
+ * Date: 2017年2月23日 下午3:44:17 <br/>
+ * 
+ * @author qiyongkang
  * @version
- * @since    JDK 1.6
+ * @since JDK 1.6
  * @see
  */
 public class JsonHelper {
-private static Logger logger = LogManager.getLogger(JsonHelper.class);
-    
+
+    private static Logger       logger = LogManager.getLogger(JsonHelper.class);
+
     private static ObjectMapper mapper = new ObjectMapper();
-    
-    public static String getJSONString(Object obj)
-    {
+
+    public static String getJSONString(Object obj) {
         String result = "";
-        try
-        {
+        try {
             result = mapper.writeValueAsString(obj);
-        }
-        catch (JsonGenerationException e)
-        {
+        } catch (JsonGenerationException e) {
             logger.error("", e);
-        }
-        catch (JsonMappingException e)
-        {
+        } catch (JsonMappingException e) {
             logger.error("", e);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             logger.error("", e);
         }
         return result;
     }
-    
-    public static Object getObjectByJSON(String jsonStr)
-    {
+
+    public static Object getObjectByJSON(String jsonStr) {
         Object obj = null;
-        try
-        {
+        try {
             obj = mapper.readValue(jsonStr, Object.class);
-        }
-        catch (JsonParseException e)
-        {
+        } catch (JsonParseException e) {
             logger.error("", e);
-        }
-        catch (JsonMappingException e)
-        {
+        } catch (JsonMappingException e) {
             logger.error("", e);
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             logger.error("", e);
         }
         return obj;
     }
 }
-

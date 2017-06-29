@@ -38,22 +38,22 @@ import org.dom4j.io.XMLWriter;
  * ClassName:XMLHelper <br/>
  * Function: TODO ADD FUNCTION. <br/>
  * Reason: TODO ADD REASON. <br/>
- * Date:     2017年2月16日 下午6:36:17 <br/>
- * @author   qiyongkang
+ * Date: 2017年2月16日 下午6:36:17 <br/>
+ * 
+ * @author qiyongkang
  * @version
- * @since    JDK 1.6
+ * @since JDK 1.6
  * @see
  */
 public class XMLHelper {
+
     private static Logger logger = LogManager.getLogger(XMLHelper.class);
 
     /**
      * 把XML按照给定的XSL进行转换，返回转换后的值
      * 
-     * @param xml
-     *            xml
-     * @param xsl
-     *            xsl
+     * @param xml xml
+     * @param xsl xsl
      * @return
      * @throws Exception
      */
@@ -93,14 +93,11 @@ public class XMLHelper {
     /**
      * 把XML按用户定义好的XSL样式进行输出
      * 
-     * @param xmlFilePath
-     *            XML文档
-     * @param xsl
-     *            XSL样式
+     * @param xmlFilePath XML文档
+     * @param xsl XSL样式
      * @return 样式化后的字段串
      */
-    public static String xml2xsl(String xmlFilePath, String xsl)
-            throws Exception {
+    public static String xml2xsl(String xmlFilePath, String xsl) throws Exception {
         if (StringHelper.isEmpty(xmlFilePath)) {
             throw new Exception("xml string is empty");
         }
@@ -138,8 +135,7 @@ public class XMLHelper {
     /**
      * 读取XML文档，返回Document对象.<br>
      * 
-     * @param xmlFile
-     *            XML文件路径
+     * @param xmlFile XML文件路径
      * @return Document 对象
      */
     public static Document getDocument(String xmlFile) throws Exception {
@@ -157,8 +153,7 @@ public class XMLHelper {
     /**
      * 读取XML文档，返回Document对象.<br>
      * 
-     * @param xmlFile
-     *            file对象
+     * @param xmlFile file对象
      * @return Document 对象
      */
     public static Document getDocument(File xmlFile) {
@@ -172,7 +167,6 @@ public class XMLHelper {
     }
 
     /**
-     * 
      * 描述：读取XML文档，先从指定的位置读取，没有再通过文件流读取(读jar包的配置文件) 时间：2015-5-15 下午9:13:12
      * 
      * @param cls
@@ -218,8 +212,7 @@ public class XMLHelper {
     /**
      * 读取XML字串，返回Document对象
      * 
-     * @param xmlString
-     *            XML文件路径
+     * @param xmlString XML文件路径
      * @return Document 对象
      */
     public static Document getDocumentFromString(String xmlString) {
@@ -238,17 +231,13 @@ public class XMLHelper {
     /**
      * 描述：把xml输出成为html 作者： 时间：Oct 29, 2008 4:57:56 PM
      * 
-     * @param xmlDoc
-     *            xmlDoc
-     * @param xslFile
-     *            xslFile
-     * @param encoding
-     *            编码
+     * @param xmlDoc xmlDoc
+     * @param xslFile xslFile
+     * @param encoding 编码
      * @return
      * @throws Exception
      */
-    public static String xml2html(String xmlDoc, String xslFile, String encoding)
-            throws Exception {
+    public static String xml2html(String xmlDoc, String xslFile, String encoding) throws Exception {
         if (StringHelper.isEmpty(xmlDoc)) {
             throw new Exception("xml string is empty");
         }
@@ -294,17 +283,13 @@ public class XMLHelper {
     /**
      * 描述：把xml输出成为html 作者： 时间：Oct 29, 2008 4:58:48 PM
      * 
-     * @param xmlFile
-     *            xmlFile
-     * @param xslFile
-     *            xslFile
-     * @param encoding
-     *            编码
+     * @param xmlFile xmlFile
+     * @param xslFile xslFile
+     * @param encoding 编码
      * @return
      * @throws Exception
      */
-    public static String xmlFile2html(String xmlFile, String xslFile,
-            String encoding) throws Exception {
+    public static String xmlFile2html(String xmlFile, String xslFile, String encoding) throws Exception {
         if (StringHelper.isEmpty(xmlFile)) {
             throw new Exception("xml string is empty");
         }
@@ -350,10 +335,8 @@ public class XMLHelper {
     /**
      * 描述： 作者： 时间：Oct 29, 2008 5:00:10 PM
      * 
-     * @param name
-     *            名
-     * @param element
-     *            元素
+     * @param name 名
+     * @param element 元素
      * @return
      */
     public static String getString(String name, Element element) {
@@ -363,16 +346,12 @@ public class XMLHelper {
     /**
      * 将一个XML文档保存至文件中.
      * 
-     * @param doc
-     *            要保存的XML文档对象.
-     * @param filePath
-     *            要保存到的文档路径.
-     * @param format
-     *            要保存的输出格式
+     * @param doc 要保存的XML文档对象.
+     * @param filePath 要保存到的文档路径.
+     * @param format 要保存的输出格式
      * @return true代表保存成功，否则代表不成功.
      */
-    public static boolean savaToFile(Document doc, String filePathName,
-            OutputFormat format) {
+    public static boolean savaToFile(Document doc, String filePathName, OutputFormat format) {
         XMLWriter writer;
         try {
             String filePath = FileHelper.getFullPath(filePathName);
@@ -383,8 +362,7 @@ public class XMLHelper {
                 }
             }
 
-            writer = new XMLWriter(new FileWriter(new File(filePathName)),
-                    format);
+            writer = new XMLWriter(new FileWriter(new File(filePathName)), format);
             writer.write(doc);
             writer.close();
             return true;
@@ -398,10 +376,8 @@ public class XMLHelper {
     /**
      * 将一个XML文档保存至文件中.
      * 
-     * @param filePath
-     *            要保存到的文档路径.
-     * @param doc
-     *            要保存的XML文档对象.
+     * @param filePath 要保存到的文档路径.
+     * @param doc 要保存的XML文档对象.
      * @return true代表保存成功，否则代表不成功.
      */
     public static boolean writeToXml(String filePathName, Document doc) {
@@ -410,4 +386,3 @@ public class XMLHelper {
         return savaToFile(doc, filePathName, format);
     }
 }
-

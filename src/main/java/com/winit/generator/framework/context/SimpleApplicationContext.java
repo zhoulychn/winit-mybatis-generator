@@ -1,6 +1,5 @@
 package com.winit.generator.framework.context;
 
-
 public class SimpleApplicationContext extends ApplicationContext {
 
     @Override

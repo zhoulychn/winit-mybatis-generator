@@ -64,15 +64,15 @@ public abstract class ClassUtils {
      * 是否为普通的Java类型. <br/>
      *
      * @author qiyongkang
-     * @param clazz
-     *            要判断的类型
+     * @param clazz 要判断的类型
      * @return True/False
      * @since JDK 1.6
      */
     public static boolean isNormalJavaType(Class<?> clazz) {
         boolean isNormalJavaType = clazz == Integer.class || clazz == String.class || clazz == Long.class
-                || clazz == Boolean.class || clazz == Float.class || clazz == Double.class || clazz == Character.class
-                || clazz == Short.class || clazz == Byte.class || clazz == BigDecimal.class;
+                                   || clazz == Boolean.class || clazz == Float.class || clazz == Double.class
+                                   || clazz == Character.class || clazz == Short.class || clazz == Byte.class
+                                   || clazz == BigDecimal.class;
         return clazz.isPrimitive() || isNormalJavaType;
     }
 
@@ -80,8 +80,7 @@ public abstract class ClassUtils {
      * isInnerClass: 判断一个类是否为内部类. <br/>
      *
      * @author qiyongkang
-     * @param clazz
-     *            要判断的类
+     * @param clazz 要判断的类
      * @return True/False
      * @since JDK 1.6
      */
@@ -94,8 +93,7 @@ public abstract class ClassUtils {
      * 如果类的修饰符不是<code>public</code>那么就返回False.
      * 
      * @author qiyongkang
-     * @param clazz
-     *            要判断的类
+     * @param clazz 要判断的类
      * @return True/False
      * @since JDK 1.6
      */
@@ -107,8 +105,7 @@ public abstract class ClassUtils {
      * isStaticInnerClass: 判断一个类是否为静态内部类. <br/>
      *
      * @author qiyongkang
-     * @param clazz
-     *            要判断的类
+     * @param clazz 要判断的类
      * @return True/False
      * @since JDK 1.6
      */
@@ -121,8 +118,7 @@ public abstract class ClassUtils {
      * 如果类的修饰符不是<code>public</code>那么就返回False.
      * 
      * @author qiyongkang
-     * @param clazz
-     *            要判断的类
+     * @param clazz 要判断的类
      * @return True/False
      * @since JDK 1.6
      */
@@ -137,24 +133,22 @@ public abstract class ClassUtils {
      * 在这之后，如果这个类不是内部类那么就可以被实例化，如果是内部类，那么只能是公共的内部类以及公共的静态内部类才能够被实例化.
      * 
      * @author qiyongkang
-     * @param clazz
-     *            要判断的类
+     * @param clazz 要判断的类
      * @return True/False
      * @since JDK 1.6
      */
     public static boolean isCanInstance(Class<?> clazz) {
         String model = Modifier.toString(clazz.getModifiers()).toLowerCase();
         return model.contains("public") && !model.contains("abstract") && !clazz.isAnonymousClass()
-                && !clazz.isInterface() && !clazz.isEnum() && !clazz.isAnnotation()
-                && (isInnerClass(clazz) ? (isPublicInnerClass(clazz) || isPublicStaticInnerClass(clazz)) : true);
+               && !clazz.isInterface() && !clazz.isEnum() && !clazz.isAnnotation()
+               && (isInnerClass(clazz) ? (isPublicInnerClass(clazz) || isPublicStaticInnerClass(clazz)) : true);
     }
 
     /**
      * isCanInstance: 根据类名称的全路径判断一个类是否可以被实例化. <br/>
      *
      * @author qiyongkang
-     * @param className
-     *            要判断的类名称的全路径
+     * @param className 要判断的类名称的全路径
      * @return True/False
      * @since JDK 1.6
      */
@@ -175,8 +169,7 @@ public abstract class ClassUtils {
      * newInstance: 根据类的完整路径，创建类对象. <br/>
      *
      * @author qiyongkang
-     * @param className
-     *            类的完整路径
+     * @param className 类的完整路径
      * @return 创建的对象
      * @since JDK 1.6
      */
@@ -205,13 +198,10 @@ public abstract class ClassUtils {
      * newInnerClassInstance: 实例化一个内部类. <br/>
      *
      * @author qiyongkang
-     * @param className
-     *            类名称的全路径
-     * @param clazz
-     *            要实例化的类
+     * @param className 类名称的全路径
+     * @param clazz 要实例化的类
      * @return 实例化之后的对象
-     * @throws Exception
-     *             实例化类遇到错误时抛出的异常
+     * @throws Exception 实例化类遇到错误时抛出的异常
      * @since JDK 1.6
      */
     private static Object newInnerClassInstance(String className, Class<?> clazz) throws Exception {
@@ -234,10 +224,8 @@ public abstract class ClassUtils {
      * newInstance: 创建一个对象实例. <br/>
      *
      * @author qiyongkang
-     * @param className
-     *            创建对象的全路径
-     * @param clazz
-     *            创建的对象类型
+     * @param className 创建对象的全路径
+     * @param clazz 创建的对象类型
      * @return 对象实例
      * @since JDK 1.6
      */
@@ -253,8 +241,7 @@ public abstract class ClassUtils {
      * getPropertyValues: 获取类中的私有属性的值. <br/>
      *
      * @author qiyongkang
-     * @param obj
-     *            要获取的类
+     * @param obj 要获取的类
      * @return 获取的属性值数组
      * @since JDK 1.6
      */
@@ -264,7 +251,7 @@ public abstract class ClassUtils {
         for (Field f : clazz.getDeclaredFields()) {
             String mod = Modifier.toString(f.getModifiers()).toLowerCase();
             if (mod.contains("public") || mod.contains("protected") || mod.contains("static")
-                    || mod.contains("final")) {
+                || mod.contains("final")) {
                 continue;
             }
             if (isNormalJavaType(f)) {
@@ -300,16 +287,15 @@ public abstract class ClassUtils {
      * isNormalJavaType: 是否为普通的Java类型. <br/>
      *
      * @author qiyongkang
-     * @param f
-     *            要判断的字段
+     * @param f 要判断的字段
      * @return True/False
      * @since JDK 1.6
      */
     public static boolean isNormalJavaType(Field f) {
         Class<?> clazz = f.getType();
         boolean isNormalJavaType = clazz == Integer.class || clazz == String.class || clazz == Long.class
-                || clazz == Boolean.class || clazz == Float.class || clazz == Double.class || clazz == Character.class
-                || clazz == Short.class || clazz == Byte.class;
+                                   || clazz == Boolean.class || clazz == Float.class || clazz == Double.class
+                                   || clazz == Character.class || clazz == Short.class || clazz == Byte.class;
         return clazz.isPrimitive() || isNormalJavaType;
     }
 
@@ -317,8 +303,7 @@ public abstract class ClassUtils {
      * isAvailable: 判断一个类是否可以用. <br/>
      *
      * @author qiyongkang
-     * @param className
-     *            类的全路径
+     * @param className 类的全路径
      * @return True/False
      * @since JDK 1.6
      */
@@ -354,8 +339,7 @@ public abstract class ClassUtils {
      * getJarMainFunction: 获取jar中在Manifest中配置的Main-Class属性值，就是jar在运行的主函数类. <br/>
      *
      * @author qiyongkang
-     * @param jarFilePath
-     *            jar文件路径
+     * @param jarFilePath jar文件路径
      * @return jar运行时调用的主函数名称
      * @since JDK 1.6
      */

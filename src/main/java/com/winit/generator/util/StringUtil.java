@@ -91,9 +91,10 @@ public class StringUtil {
         }
         return propName;
     }
-    
+
     /**
      * 生成随机序列值
+     * 
      * @return
      */
     public static String generate16LongNum() {
@@ -111,6 +112,6 @@ public class StringUtil {
         for (int i = 0; i < 1000; i++) {
             System.out.println(generate16LongNum());
         }
-        
+
     }
 }

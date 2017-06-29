@@ -11,6 +11,6 @@ public interface ApplicationTask extends Skipable {
     void registerNextTask(ApplicationTask nextTask);
 
     ApplicationTask next();
-    
+
     void initLogger(String applicationTaskId, String applicationId);
 }

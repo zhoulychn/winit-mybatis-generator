@@ -7,10 +7,11 @@ import com.winit.generator.log.LogFactory;
 import com.winit.generator.util.PropertyUtil;
 
 public abstract class AbstractApplicationTask implements ApplicationTask {
+
     /**
      * 日志类
      */
-    protected Logger logger;
+    protected Logger              logger;
 
     /**
      * VAR_SKIP_NEXT: 全局变量：是否跳过以下一个节点.
@@ -24,32 +25,30 @@ public abstract class AbstractApplicationTask implements ApplicationTask {
      * 
      * @since JDK 1.6
      */
-    private ApplicationTask nextTask = null;
+    private ApplicationTask       nextTask      = null;
 
     /**
      * hasNext: 是否有下一个应用程序任务.
      * 
      * @since JDK 1.6
      */
-    private boolean hasNext = false;
+    private boolean               hasNext       = false;
 
     /**
      * isSkipNext: 是否跳过下一个任务.
      * 
      * @since JDK 1.6
      */
-    private boolean isSkipNext = false;
+    private boolean               isSkipNext    = false;
 
     /**
      * Creates a new instance of AbstractApplicationTask.
-     *
      */
-    public AbstractApplicationTask() {
+    public AbstractApplicationTask(){
         super();
     }
-    
+
     /**
-     * 
      * initLogger:初始化日志. <br/>
      *
      * @author qiyongkang
