@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import com.winit.common.orm.mybatis.PageBase;
 import com.winit.common.query.Page;
 import com.winit.common.query.Searchable;
-import com.winit.common.spi.SPIException;
 import com.winit.pms.spi.v2.common.PageVo;
 import com.winit.pms.utils.SearchableUtil;
 import com.winit.common.query.Sort.Direction;
@@ -42,7 +41,7 @@ public class ${className} implements ${managerClassName} {
     private ${daoClassName} ${daoVar};
 
     @Override
-    public ${voClassName} get${entityName}(${voClassName} vo) throws SPIException {
+    public ${voClassName} get${entityName}(${voClassName} vo) {
         logger.info("单个查询：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
         this.copyVoToEntity(vo, entity);
@@ -56,7 +55,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public Long create${entityName}(${voClassName} vo) throws SPIException {
+    public Long create${entityName}(${voClassName} vo) {
         logger.info("新增：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
         this.copyVoToEntity(vo, entity);
@@ -67,7 +66,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public long createBatch${entityName}(List<${voClassName}> vos) throws SPIException {
+    public long createBatch${entityName}(List<${voClassName}> vos) {
         logger.info("批量新增：{}", vos);
         List<${entityClassName}> list = new ArrayList<${entityClassName}>();
         for (${entityName}Vo vo : vos) {
@@ -79,7 +78,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public long delete${entityName}(${voClassName} vo) throws SPIException {
+    public long delete${entityName}(${voClassName} vo) {
         logger.info("删除：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
         this.copyVoToEntity(vo, entity);
@@ -87,7 +86,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public long deleteBatch${entityName}(List<${voClassName}> vos) throws SPIException {
+    public long deleteBatch${entityName}(List<${voClassName}> vos) {
         logger.info("批量删除：{}", vos);
         List<${entityClassName}> list = new ArrayList<${entityClassName}>();
         for (${entityName}Vo vo : vos) {
@@ -99,7 +98,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public long update${entityName}(${voClassName} vo) throws SPIException {
+    public long update${entityName}(${voClassName} vo) {
         logger.info("更新：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
         this.copyVoToEntity(vo, entity);
@@ -107,7 +106,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public long updateBatch${entityName}(List<${voClassName}> vos) throws SPIException {
+    public long updateBatch${entityName}(List<${voClassName}> vos) {
         logger.info("批量更新：{}", vos);
         List<${entityClassName}> list = new ArrayList<${entityClassName}>();
         for (${entityName}Vo vo : vos) {
@@ -119,7 +118,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public Page<${voClassName}> find${entityName}(PageVo pageVo, ${voClassName} vo) throws SPIException {
+    public Page<${voClassName}> find${entityName}(PageVo pageVo, ${voClassName} vo) {
         logger.info("分页查询：{}, vo:{}", pageVo, vo);
         Searchable<${entityClassName}> searchable = this.buildSearchable(pageVo, vo);
         PageBase<${entityClassName}> page = ${daoVar}.findPage(searchable);
@@ -133,7 +132,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public List<${voClassName}> list${entityName}(${voClassName} vo) throws SPIException {
+    public List<${voClassName}> list${entityName}(${voClassName} vo) {
         logger.info("查询所有：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
         this.copyVoToEntity(vo, entity);

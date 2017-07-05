@@ -2,7 +2,7 @@
 <system>
   <category name="jdbc" description="数据库相关配置">
     <item name="driverName" value="com.mysql.jdbc.Driver" description="驱动名称"/>
-    <item name="url" value="jdbc:mysql://172.16.2.167:3306/pms2?useUnicode=yes&amp;characterEncoding=UTF8&amp;allowMultiQueries=true" description="url"/>
+    <item name="url" value="jdbc:mysql://172.16.2.152:3306/pms2?useUnicode=yes&amp;characterEncoding=UTF8&amp;allowMultiQueries=true" description="url"/>
     <item name="username" value="root" description="用户名"/>
     <item name="password" value="winit2015" description="密码"/>
     <!-- <item name="driverName" value="oracle.jdbc.driver.OracleDriver" description="驱动名称"/>
@@ -16,11 +16,11 @@
    <!--  <item name="database" value="oracle" description="数据库"/> -->
     <item name="schemaPattern" value="root" description="每个用户对应一个同名的schema"/>
     <!-- <item name="schemaPattern" value="SMS" description="每个用户对应一个同名的schema"/> -->
-    <item name="baseColumns" value="ORGANIZATION_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_DELETE,IS_ACTIVE" description="基本的字段"/>
+    <item name="baseColumns" value="ORGANIZATION_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_DELETE" description="基本的字段"/>
    <!--  <item name="baseColumns" value="ORG_ID,CREATEDBY,CREATED,UPDATEDBY,UPDATED,IS_DELETE,IS_ACTIVE" description="基本的字段"/> -->
-    <item name="tableNames" value="pms_egd_sla,pms_egd_sla_limit" description="需要工具生成的表，逗号分隔"/>
-    <item name="entityNames" value="EgdSla,EgdSlaLimit" description="实体名，逗号分隔， 与上面的表名一一对应"/>
-    <item name="entityDescs" value="尾程时效,EGD时效限制" description="实体描述， 与上面的实体名一一对应"/>
+    <item name="tableNames" value="pms_plan_event,pms_plan_event_cost_chargeitem,pms_plan_event_cost_supplier,pms_plan_event_revenue" description="需要工具生成的表，逗号分隔"/>
+    <item name="entityNames" value="PlanEvent,PlanEventCostChargeItem,PlanEventCostSupplier,PlanEventRevenue" description="实体名，逗号分隔， 与上面的表名一一对应"/>
+    <item name="entityDescs" value="规划事件定义,规划事件成本-费用项,规划事件成本-供应商,规划事件收入项" description="实体描述， 与上面的实体名一一对应"/>
     <!-- <item name="tableNames" value="SMS_BILL_MANAGER,SMS_BILL" description="需要工具生成的表，逗号分隔"/>
     <item name="entityNames" value="BillManager,Bill" description="实体名，逗号分隔， 与上面的表名一一对应"/>
     <item name="entityDescs" value="尾程时效, 尾程" description="实体描述， 与上面的实体名一一对应"/> -->

@@ -4,7 +4,6 @@ import java.util.List;
 
 import ${voType};
 import com.winit.common.query.Page;
-import com.winit.common.spi.SPIException;
 import com.winit.pms.spi.v2.common.PageVo;
 
 /**
@@ -26,7 +25,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    Long create${entityName}(${voClassName} vo) throws SPIException;
+    Long create${entityName}(${voClassName} vo);
     
     /**
      * 批量新增
@@ -34,7 +33,7 @@ public interface ${className} {
      * @param vos
      * @return
      */
-    long createBatch${entityName}(List<${voClassName}> vos) throws SPIException;
+    long createBatch${entityName}(List<${voClassName}> vos);
     
     /**
      * 单个删除
@@ -42,7 +41,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    long delete${entityName}(${voClassName} vo) throws SPIException;
+    long delete${entityName}(${voClassName} vo);
     
     /**
      * 批量删除
@@ -50,7 +49,7 @@ public interface ${className} {
      * @param vos
      * @return
      */
-    long deleteBatch${entityName}(List<${voClassName}> vos) throws SPIException;
+    long deleteBatch${entityName}(List<${voClassName}> vos);
     
     /**
      * 单个更新
@@ -58,7 +57,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    long update${entityName}(${voClassName} vo) throws SPIException;
+    long update${entityName}(${voClassName} vo);
     
     /**
      * 批量更新
@@ -66,7 +65,7 @@ public interface ${className} {
      * @param vos
      * @return
      */
-    long updateBatch${entityName}(List<${voClassName}> vos) throws SPIException;
+    long updateBatch${entityName}(List<${voClassName}> vos);
     
     /**
      * 根据id查询
@@ -74,7 +73,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    ${voClassName} get${entityName}(${voClassName} vo) throws SPIException;
+    ${voClassName} get${entityName}(${voClassName} vo);
     
     /**
      * 分页查询
@@ -83,7 +82,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    Page<${voClassName}> find${entityName}(PageVo pageVo, ${voClassName} vo) throws SPIException;
+    Page<${voClassName}> find${entityName}(PageVo pageVo, ${voClassName} vo);
     
     /**
      * 查询列表
@@ -91,5 +90,5 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    List<${voClassName}> list${entityName}(${voClassName} vo) throws SPIException;
+    List<${voClassName}> list${entityName}(${voClassName} vo);
 }
