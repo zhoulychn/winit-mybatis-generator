@@ -103,6 +103,7 @@ public class InitTask extends AbstractApplicationTask {
             while (tableRS.next()) {
                 // 表名
                 String tableName = tableRS.getString("TABLE_NAME").toLowerCase();
+                logger.info("数据库表名：{}", tableName);
                 if (tableList.contains(tableName.toLowerCase())) {
                     logger.info("*****************************");
                     logger.info("tableName:{}", tableName);
@@ -166,6 +167,11 @@ public class InitTask extends AbstractApplicationTask {
 
             // 放入上下文
             context.setAttribute("tableInfos", tableInfos);
+
+            if (tableInfos.size() == 0) {
+                logger.info("在数据库没有匹配到相应的表");
+                return true;
+            }
         } catch (Exception e) {
             logger.info("初始化任务异常", e);
             e.printStackTrace();
