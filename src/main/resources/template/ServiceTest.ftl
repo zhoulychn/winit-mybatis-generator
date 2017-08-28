@@ -79,8 +79,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         list.add(v2);
         command.setVos(list);
 
-        boolean isSuccess = ${lowerEntityName}Service.createBatch${entityName}(command);
-        System.out.println("isSuccess:" + isSuccess);
+        ${lowerEntityName}Service.createBatch${entityName}(command);
     }
 
     @Test
@@ -89,8 +88,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         Get${entityName}Command command = new Get${entityName}Command();
         command.setCtx(this.createContext());
         command.setId(101L);
-        boolean isSuccess = ${lowerEntityName}Service.delete${entityName}(command);
-        System.out.println("是否成功：" + isSuccess);
+        ${lowerEntityName}Service.delete${entityName}(command);
     }
 
     @Test
@@ -103,8 +101,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         ids.add(1L);
         ids.add(2L);
         command.setIds(ids);
-        boolean isSuccess = ${lowerEntityName}Service.deleteBatch${entityName}(command);
-        System.out.println("是否成功：" + isSuccess);
+        ${lowerEntityName}Service.deleteBatch${entityName}(command);
     }
 
     @Test
@@ -115,8 +112,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         ${entityName}Vo vo = new ${entityName}Vo();
         vo.setId(1L);
         command.setVo(vo);
-        boolean isSuccess = ${lowerEntityName}Service.update${entityName}(command);
-        System.out.println("是否成功：" + isSuccess);
+        ${lowerEntityName}Service.update${entityName}(command);
     }
 
     @Test
@@ -133,8 +129,7 @@ public class ${entityName}ServiceTest extends AbstractJUnit4SpringContextTests {
         list.add(v2);
         command.setVos(list);
 
-        boolean isSuccess = ${lowerEntityName}Service.updateBatch${entityName}(command);
-        System.out.println("isSuccess:" + isSuccess);
+        ${lowerEntityName}Service.updateBatch${entityName}(command);
     }
 
     @Test

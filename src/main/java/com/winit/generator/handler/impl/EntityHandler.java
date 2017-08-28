@@ -41,7 +41,7 @@ public class EntityHandler extends BaseHandler<EntityInfo> {
             String propType = entry.getValue();
 
             // 注释、类型、名称
-            sb.append("    /*")
+            sb.append("    /**")
                 .append(propRemarks.get(propName))
                 .append("*/\r\n")
                 .append("    private ")

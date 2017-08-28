@@ -52,11 +52,7 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
             logger.info("id不能为空");
             throw new SPIException("");
         }
-        
-        ${entityName}Vo vo = new ${entityName}Vo();
-        vo.setId(id);
-        ${entityName}Vo ${lowerEntityName}Vo = ${lowerEntityName}Manager.get${entityName}(vo);
-        return ${lowerEntityName}Vo;
+        return ${lowerEntityName}Manager.get${entityName}(id);
     }
 
     @Override
@@ -75,11 +71,10 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
         vo.setIsActive(PmsConstants.ACTIVE_Y);
         vo.setIsDelete(PmsConstants.DELETE_N);
         return ${lowerEntityName}Manager.create${entityName}(vo);
-
     }
 
     @Override
-    public boolean createBatch${entityName}(${entityName}BatchCommand command) throws SPIException {
+    public void createBatch${entityName}(${entityName}BatchCommand command) throws SPIException {
         logger.info("批量新增：{}", command);
         List<${entityName}Vo> vos = command.getVos();
         
@@ -95,16 +90,11 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
             vo.setIsActive(PmsConstants.ACTIVE_Y);
             vo.setIsDelete(PmsConstants.DELETE_N);
         }
-        long count = ${lowerEntityName}Manager.createBatch${entityName}(vos);
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        ${lowerEntityName}Manager.createBatch${entityName}(vos);
     }
 
     @Override
-    public boolean delete${entityName}(Get${entityName}Command command) throws SPIException {
+    public void delete${entityName}(Get${entityName}Command command) throws SPIException {
         logger.info("单个删除：{}", command);
         Long id = command.getId();
         
@@ -112,21 +102,11 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
             logger.info("id不能为空");
             throw new SPIException("");
         }
-        
-        ${entityName}Vo vo = new ${entityName}Vo();
-        vo.setId(id);
-        vo.setUpdated(new Date());
-        vo.setUpdatedby(command.getCtx().getUsername());
-        long count = ${lowerEntityName}Manager.delete${entityName}(vo);
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        ${lowerEntityName}Manager.delete${entityName}(id);
     }
 
     @Override
-    public boolean deleteBatch${entityName}(List${entityName}Command command) throws SPIException {
+    public void deleteBatch${entityName}(List${entityName}Command command) throws SPIException {
         logger.info("批量删除：{}", command);
         List<Long> ids = command.getIds();
         
@@ -134,26 +114,11 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
             logger.info("ids不能为空");
             throw new SPIException("");
         }
-        
-        ${entityName}Vo vo = null;
-        List<${entityName}Vo> vos = new ArrayList<${entityName}Vo>();
-        for (Long id : ids) {
-            vo = new ${entityName}Vo();
-            vo.setId(id);
-            vo.setUpdated(new Date());
-            vo.setUpdatedby(command.getCtx().getUsername());
-            vos.add(vo);
-        }
-        long count = ${lowerEntityName}Manager.deleteBatch${entityName}(vos);
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        ${lowerEntityName}Manager.deleteBatch${entityName}(ids);
     }
 
     @Override
-    public boolean update${entityName}(${entityName}Command command) throws SPIException {
+    public void update${entityName}(${entityName}Command command) throws SPIException {
         logger.info("单个更新：{}", command);
         ${entityName}Vo vo = command.getVo();
         
@@ -164,16 +129,11 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
         
         vo.setUpdated(new Date());
         vo.setUpdatedby(command.getCtx().getUsername());
-        long count = ${lowerEntityName}Manager.update${entityName}(vo);
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        ${lowerEntityName}Manager.update${entityName}(vo);
     }
 
     @Override
-    public boolean updateBatch${entityName}(${entityName}BatchCommand command) throws SPIException {
+    public void updateBatch${entityName}(${entityName}BatchCommand command) throws SPIException {
         logger.info("批量更新：{}", command);
         List<${entityName}Vo> vos = command.getVos();
         
@@ -186,27 +146,21 @@ public class ${entityName}ServiceImpl implements ${entityName}Service {
             vo.setUpdated(new Date());
             vo.setUpdatedby(command.getCtx().getUsername());
         }
-        long count = ${lowerEntityName}Manager.updateBatch${entityName}(vos);
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        ${lowerEntityName}Manager.updateBatch${entityName}(vos);
     }
 
     @Override
-    public Page<${entityName}Vo> query${entityName}Page(${entityName}QueryCommand command) throws SPIException {
+    public Page<${entityName}Vo> find${entityName}Page(${entityName}QueryCommand command) throws SPIException {
         logger.info("分页查询：{}", command);
         ${entityName}Vo vo = command.getVo();
         PageVo pageVo = command.getPageVo();
-        return ${lowerEntityName}Manager.find${entityName}(pageVo, vo);
+        return ${lowerEntityName}Manager.find${entityName}Page(pageVo, vo);
     }
 
     @Override
     public List<${entityName}Vo> query${entityName}List(${entityName}QueryCommand command) throws SPIException {
         logger.info("查询所有：{}", command);
         ${entityName}Vo vo = command.getVo();
-        return ${lowerEntityName}Manager.list${entityName}(vo);
+        return ${lowerEntityName}Manager.query${entityName}List(vo);
     }
-
 }

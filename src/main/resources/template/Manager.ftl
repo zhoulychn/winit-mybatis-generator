@@ -33,7 +33,7 @@ public interface ${className} {
      * @param vos
      * @return
      */
-    long createBatch${entityName}(List<${voClassName}> vos);
+    void createBatch${entityName}(List<${voClassName}> vos);
     
     /**
      * 单个删除
@@ -41,7 +41,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    long delete${entityName}(${voClassName} vo);
+    void delete${entityName}(Long id);
     
     /**
      * 批量删除
@@ -49,7 +49,7 @@ public interface ${className} {
      * @param vos
      * @return
      */
-    long deleteBatch${entityName}(List<${voClassName}> vos);
+    void deleteBatch${entityName}(List<Long> ids);
     
     /**
      * 单个更新
@@ -57,7 +57,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    long update${entityName}(${voClassName} vo);
+    void update${entityName}(${voClassName} vo);
     
     /**
      * 批量更新
@@ -65,7 +65,7 @@ public interface ${className} {
      * @param vos
      * @return
      */
-    long updateBatch${entityName}(List<${voClassName}> vos);
+    void updateBatch${entityName}(List<${voClassName}> vos);
     
     /**
      * 根据id查询
@@ -73,7 +73,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    ${voClassName} get${entityName}(${voClassName} vo);
+    ${voClassName} get${entityName}(Long id);
     
     /**
      * 分页查询
@@ -82,7 +82,7 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    Page<${voClassName}> find${entityName}(PageVo pageVo, ${voClassName} vo);
+    Page<${voClassName}> find${entityName}Page(PageVo pageVo, ${voClassName} vo);
     
     /**
      * 查询列表
@@ -90,5 +90,5 @@ public interface ${className} {
      * @param vo
      * @return
      */
-    List<${voClassName}> list${entityName}(${voClassName} vo);
+    List<${voClassName}> query${entityName}List(${voClassName} vo);
 }

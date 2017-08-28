@@ -41,11 +41,9 @@ public class ${className} implements ${managerClassName} {
     private ${daoClassName} ${daoVar};
 
     @Override
-    public ${voClassName} get${entityName}(${voClassName} vo) {
-        logger.info("单个查询：{}", vo);
-        ${entityClassName} entity = new ${entityClassName}();
-        this.copyVoToEntity(vo, entity);
-        entity = ${daoVar}.get(entity);
+    public ${voClassName} get${entityName}(Long id) {
+        logger.info("单个查询：{}", id);
+        ${entityClassName} entity = ${daoVar}.get(id);
         ${voClassName} newVo = null;
         if (entity != null) {
             newVo = new ${voClassName}();
@@ -61,12 +59,12 @@ public class ${className} implements ${managerClassName} {
         this.copyVoToEntity(vo, entity);
 
         // TODO: 是否需要校验已存在
-        ${daoVar}.insertSingle(entity);
+        ${daoVar}.add(entity);
         return entity.getId();
     }
 
     @Override
-    public long createBatch${entityName}(List<${voClassName}> vos) {
+    public void createBatch${entityName}(List<${voClassName}> vos) {
         logger.info("批量新增：{}", vos);
         List<${entityClassName}> list = new ArrayList<${entityClassName}>();
         for (${entityName}Vo vo : vos) {
@@ -74,31 +72,23 @@ public class ${className} implements ${managerClassName} {
             this.copyVoToEntity(vo, entity);
             list.add(entity);
         }
-        return ${daoVar}.insertBatch(list);
+        ${daoVar}.addBatch(list);
     }
 
     @Override
-    public long delete${entityName}(${voClassName} vo) {
-        logger.info("删除：{}", vo);
-        ${entityClassName} entity = new ${entityClassName}();
-        this.copyVoToEntity(vo, entity);
-        return ${daoVar}.deleteSingle(entity);
+    public void delete${entityName}(Long id) {
+        logger.info("删除：{}", id);
+        ${daoVar}.delete(id);
     }
 
     @Override
-    public long deleteBatch${entityName}(List<${voClassName}> vos) {
-        logger.info("批量删除：{}", vos);
-        List<${entityClassName}> list = new ArrayList<${entityClassName}>();
-        for (${entityName}Vo vo : vos) {
-            ${entityName}Entity entity = new ${entityName}Entity();
-            this.copyVoToEntity(vo, entity);
-            list.add(entity);
-        }
-        return ${daoVar}.deleteBatch(list);
+    public void deleteBatch${entityName}(List<Long> ids) {
+        logger.info("批量删除：{}", ids);
+        ${daoVar}.deleteBatch(ids);
     }
 
     @Override
-    public long update${entityName}(${voClassName} vo) {
+    public void update${entityName}(${voClassName} vo) {
         logger.info("更新：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
         this.copyVoToEntity(vo, entity);
@@ -114,11 +104,11 @@ public class ${className} implements ${managerClassName} {
             this.copyVoToEntity(vo, entity);
             list.add(entity);
         }
-        return ${daoVar}.updateBatch(list);
+        ${daoVar}.updateBatch(list);
     }
 
     @Override
-    public Page<${voClassName}> find${entityName}(PageVo pageVo, ${voClassName} vo) {
+    public Page<${voClassName}> find${entityName}Page(PageVo pageVo, ${voClassName} vo) {
         logger.info("分页查询：{}, vo:{}", pageVo, vo);
         Searchable<${entityClassName}> searchable = this.buildSearchable(pageVo, vo);
         PageBase<${entityClassName}> page = ${daoVar}.findPage(searchable);
@@ -132,7 +122,7 @@ public class ${className} implements ${managerClassName} {
     }
 
     @Override
-    public List<${voClassName}> list${entityName}(${voClassName} vo) {
+    public List<${voClassName}> query${entityName}List(${voClassName} vo) {
         logger.info("查询所有：{}", vo);
         ${entityClassName} entity = new ${entityClassName}();
         this.copyVoToEntity(vo, entity);

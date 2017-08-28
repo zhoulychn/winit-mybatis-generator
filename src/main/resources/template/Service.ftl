@@ -40,7 +40,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean createBatch${entityName}(${entityName}BatchCommand command) throws SPIException;
+    void createBatch${entityName}(${entityName}BatchCommand command) throws SPIException;
 
     /**
      * 单个删除
@@ -48,7 +48,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean delete${entityName}(Get${entityName}Command command) throws SPIException;
+    void delete${entityName}(Get${entityName}Command command) throws SPIException;
 
     /**
      * 批量删除
@@ -56,7 +56,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean deleteBatch${entityName}(List${entityName}Command command) throws SPIException;
+    void deleteBatch${entityName}(List${entityName}Command command) throws SPIException;
 
     /**
      * 单个更新
@@ -64,7 +64,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean update${entityName}(${entityName}Command command) throws SPIException;
+    void update${entityName}(${entityName}Command command) throws SPIException;
 
     /**
      * 批量更新
@@ -72,7 +72,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    boolean updateBatch${entityName}(${entityName}BatchCommand command) throws SPIException;
+    void updateBatch${entityName}(${entityName}BatchCommand command) throws SPIException;
 
     /**
      * 单个查询
@@ -88,7 +88,7 @@ public interface ${className} {
      * @param command
      * @return
      */
-    Page<${voClassName}> query${entityName}Page(${entityName}QueryCommand command) throws SPIException;
+    Page<${voClassName}> find${entityName}Page(${entityName}QueryCommand command) throws SPIException;
 
     /**
      * 查询所有

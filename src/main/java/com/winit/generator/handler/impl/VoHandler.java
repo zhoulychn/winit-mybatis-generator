@@ -41,7 +41,7 @@ public class VoHandler extends BaseHandler<VoInfo> {
             String propType = entry.getValue();
 
             // 注释、类型、名称
-            sb.append("    /*")
+            sb.append("    /**")
                 .append(propRemarks.get(propName))
                 .append("*/\r\n")
                 .append("    private ")

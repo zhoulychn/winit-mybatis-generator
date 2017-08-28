@@ -26,28 +26,12 @@ ${importStr}
 @MyBatisRepo
 public interface ${className} extends MyBatisPageRepo<${entityClassName}, Serializable> {
     /**
-     * 单个新增
-     * 
-     * @param entity
-     * @return
-     */
-    long insertSingle(${entityClassName} entity);
-    
-    /**
      * 批量新增
      * 
      * @param list
      * @return
      */
-    Long insertBatch(@Param("list")List<${entityClassName}> list);
-    
-    /**
-     * 单个更新
-     * 
-     * @param entity
-     * @return
-     */
-    long updateSingle(${entityClassName} entity);
+    int addBatch(@Param("list")List<${entityClassName}> list);
     
     /**
      * 批量更新
@@ -55,15 +39,7 @@ public interface ${className} extends MyBatisPageRepo<${entityClassName}, Serial
      * @param list
      * @return
      */
-    long updateBatch(@Param("list")List<${entityClassName}> list);
-    
-    /**
-     * 单个删除
-     * 
-     * @param entity
-     * @return
-     */
-    long deleteSingle(${entityClassName} entity);
+    int updateBatch(@Param("list")List<${entityClassName}> list);
     
     /**
      * 批量删除
@@ -71,15 +47,7 @@ public interface ${className} extends MyBatisPageRepo<${entityClassName}, Serial
      * @param list
      * @return
      */
-    long deleteBatch(@Param("list")List<${entityClassName}> list);
-    
-    /**
-     * 分页查询
-     * 
-     * @param searchable
-     * @return
-     */
-    PageBase<${entityClassName}> findPage(Searchable<${entityClassName}> searchable);
+    int deleteBatch(@Param("list")List<Long> list);
     
     /**
      * 查询列表
@@ -87,13 +55,5 @@ public interface ${className} extends MyBatisPageRepo<${entityClassName}, Serial
      * @param entity
      * @return
      */
-    List<${entityClassName}> findList(${entityClassName} entity);
-    
-    /**
-     * 根据id查询
-     * 
-     * @param entity
-     * @return
-     */
-    ${entityClassName} get(${entityClassName} entity);
+    List<${entityClassName}> queryList(${entityClassName} entity);
 }

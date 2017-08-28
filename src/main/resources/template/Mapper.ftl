@@ -12,7 +12,7 @@ ${resultMap}
   </sql>
   
   <!-- 单个插入 -->
-  <insert id="insertSingle" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
+  <insert id="add" parameterType="${entityType}" useGeneratedKeys="true" keyProperty="id">
     insert into ${tableName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
 ${insertIfColumns}
@@ -23,7 +23,7 @@ ${insertIfProps}
   </insert>
   
   <!-- 批量新增 -->
-  <insert id="insertBatch" parameterType="java.util.List">
+  <insert id="addBatch" parameterType="java.util.List">
     INSERT INTO ${tableName}
     (${insertBatchColumns})
     VALUES
@@ -33,7 +33,7 @@ ${insertIfProps}
   </insert>
   
   <!-- 单个更新 -->
-  <update id="updateSingle" parameterType="${entityType}">
+  <update id="update" parameterType="${entityType}">
     update ${tableName}
     <set>
 ${updateColProps}
@@ -53,8 +53,8 @@ ${updateBatchColProps}
   </update>
   
   <!-- 删除 -->
-  <update id="deleteSingle" parameterType="${entityType}" >
-    update ${tableName} set UPDATED = <#noparse>#{updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
+  <update id="delete" parameterType="java.lang.Long" >
+    update ${tableName} set IS_DELETE = 'Y'
     where ID = <#noparse>#{id,jdbcType=BIGINT}</#noparse>
   </update>
   
@@ -62,13 +62,13 @@ ${updateBatchColProps}
   <update id="deleteBatch" parameterType="java.util.List" >
     <foreach collection="list" item="item" index="index" open="" close="" separator=";">  
         update ${tableName}
-        set UPDATED = <#noparse>#{item.updated,jdbcType=TIMESTAMP}</#noparse>,UPDATEDBY = <#noparse>#{item.updatedby,jdbcType=VARCHAR}</#noparse>, IS_DELETE = 'Y'
-        where ID = <#noparse>#{item.id,jdbcType=BIGINT}</#noparse>
+        set IS_DELETE = 'Y'
+        where ID = <#noparse>#{item,jdbcType=BIGINT}</#noparse>
     </foreach> 
   </update>
   
   <!-- 查询所有 -->
-  <select id="findList" resultMap="BaseResultMap" parameterType="${entityType}">
+  <select id="queryList" resultMap="BaseResultMap" parameterType="${entityType}">
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName}
@@ -77,7 +77,7 @@ ${findListConditon}
   </select>
   
   <!-- 分页查询 -->
-  <select id="findPage" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
+  <select id="find" resultMap="BaseResultMap" parameterType="com.winit.common.query.Searchable">
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName}
@@ -85,13 +85,11 @@ ${findListConditon}
   </select>
   
   <!-- 单个查询 -->
-  <select id="get" parameterType="${entityType}" resultMap="BaseResultMap">
+  <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     FROM ${tableName} 
-    WHERE IS_DELETE = 'N'
-    <if test="id != null">
-      AND id = <#noparse>#{id, jdbcType=BIGINT}</#noparse>
-    </if>
+    WHERE IS_DELETE = 'N' AND IS_ACTIVE='Y' 
+      AND id = #{id, jdbcType=BIGINT}
   </select>
 </mapper>
