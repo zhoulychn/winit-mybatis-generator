@@ -7,7 +7,7 @@
    <properties>
     <!--versions-->
     <junit.version>4.11</junit.version>
-    <log4j2.version>2.4.1</log4j2.version>
+    <log4j2.version>2.13.3</log4j2.version>
     
     <!--plguin-setting-->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
