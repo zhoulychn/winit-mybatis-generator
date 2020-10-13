@@ -6,7 +6,7 @@
   
    <properties>
     <!--versions-->
-    <junit.version>4.11</junit.version>
+    <junit.version>4.13.1</junit.version>
     <log4j2.version>2.4.1</log4j2.version>
     
     <!--plguin-setting-->
